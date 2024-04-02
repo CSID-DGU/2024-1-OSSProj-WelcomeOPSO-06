@@ -1,2 +1,1 @@
-print("Hello JWH")
-print("My Class:OSSProj")
+print("Hello 장원혁!")

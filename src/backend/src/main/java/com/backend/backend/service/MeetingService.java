@@ -1,5 +1,6 @@
 package com.backend.backend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.backend.dto.MeetingRequest;
 import com.backend.backend.entity.Meeting;
+import com.backend.backend.entity.Participant;
 import com.backend.backend.entity.User;
 import com.backend.backend.repository.MeetingRepository;
+import com.backend.backend.repository.ParticipantRepository;
 import com.backend.backend.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +25,33 @@ public class MeetingService {
     private MeetingRepository meetingRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ParticipantRepository participantRepository;
 
-
+    //주최자 모임목록
     public List<Meeting> getAllMeetings(String email) {
         User user = userRepository.findByEmail(email).orElse(null);
         return meetingRepository.findByUserId(user.getId());
+    }
+
+    //참여자 모임목록
+    public List<Meeting> getMyMeetings(String email) {
+        User user = userRepository.findByEmail(email).orElse(null);//참여자
+        List<Participant> participants =  participantRepository.findByUserId(user.getId());
+        
+        if (participants == null || participants.isEmpty()) {
+            return null;//참여중인 모임 없음
+        }
+
+        // 참여자가 참여한 모임 목록 추출
+        List<Meeting> myMeetings = new ArrayList<>();
+
+        for (Participant participant : participants) {
+            myMeetings.add(participant.getMeeting());
+        }
+
+        return myMeetings;
+
     }
 
     public Meeting show(Long meetingId) {
@@ -59,7 +84,7 @@ public class MeetingService {
         //타겟 조회
         Meeting target = meetingRepository.findById(meetingId).orElse(null);
         //잘못된 요청 처리
-        if(target == null || !meetingId.equals(updateMeeting.getId()) || !target.getUser().getId().equals(updateMeeting.getUser().getId())){
+        if(target == null || meetingId!=updateMeeting.getId() || target.getUser().getId()!=updateMeeting.getUser().getId()){
             log.info("잘못된 요청! id:{},meeting:{}",meetingId,meetingRepository.toString());
             return null;
         }
@@ -73,13 +98,15 @@ public class MeetingService {
         //대상 찾기
         Meeting target = meetingRepository.findById(meetingId).orElse(null);
         //잘못된 요청 처리
-        if(target ==null || !target.getUser().getId().equals(user.getId())){//타겟이 없거나, 타겟의 주최자 아이디가 요청한 사용자가 아닌ㄱ
+        if(target ==null || target.getUser().getId()!=user.getId()){//타겟이 없거나, 타겟의 주최자 아이디가 요청한 사용자가 아닌ㄱ
             return null;
         }
         //삭제 수행
         meetingRepository.delete(target);
         return target;
     }
+
+    
 
     
 }

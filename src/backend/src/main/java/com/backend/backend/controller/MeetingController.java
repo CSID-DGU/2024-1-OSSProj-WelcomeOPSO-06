@@ -30,12 +30,18 @@ public class MeetingController {
     private MeetingService meetingService;
     
     //주최자 모임 목록
-    @GetMapping("/meetings")
+    @GetMapping("/meetings/organizer")
     public List<Meeting> getAllMeetings(Principal principal) {
         String email = principal.getName();
         return meetingService.getAllMeetings(email);
     }
 
+    //참여자 모임 목록
+    @GetMapping("/meetings/partcipant")
+    public List<Meeting> getMyMeetings(Principal principal) {
+        String email = principal.getName();
+        return meetingService.getMyMeetings(email);
+    }
      // 모임 상세 페이지-누구나 모임아이디만 있으면 접근가능
     @GetMapping("/meetings/{meetingId}")
     public Meeting show(@PathVariable Long meetingId){
@@ -66,7 +72,7 @@ public class MeetingController {
         } catch(Exception e){
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-
+        
         return new ResponseEntity<Meeting>(meeting, HttpStatus.OK);
         
     }

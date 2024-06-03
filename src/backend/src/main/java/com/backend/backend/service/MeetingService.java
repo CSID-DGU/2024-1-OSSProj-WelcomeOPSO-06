@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.backend.dto.MeetingRequest;
+import com.backend.backend.entity.Attend;
 import com.backend.backend.entity.Meeting;
 import com.backend.backend.entity.Participant;
 import com.backend.backend.entity.User;
+import com.backend.backend.repository.AttendRepository;
 import com.backend.backend.repository.MeetingRepository;
 import com.backend.backend.repository.ParticipantRepository;
 import com.backend.backend.repository.UserRepository;
@@ -27,6 +29,8 @@ public class MeetingService {
     private UserRepository userRepository;
     @Autowired
     private ParticipantRepository participantRepository;
+    @Autowired
+    private AttendRepository attendRepository;
 
     //주최자 모임목록
     public List<Meeting> getAllMeetings(String email) {
@@ -91,8 +95,17 @@ public class MeetingService {
         target.patch(updateMeeting);
         Meeting updated =meetingRepository.save(target);
         return updated;
+
+
+        // if(target==null){//해당 모임 없음.
+        //     return null;
+        // }
+        // target.patch(dto.getMeetingName());
+        // Meeting updated =meetingRepository.save(target);
+        // return updated;
     }
 
+    @Transactional
     public Meeting delete(Long meetingId, String email) {
         User user = userRepository.findByEmail(email).orElse(null);
         //대상 찾기
@@ -102,6 +115,18 @@ public class MeetingService {
             return null;
         }
         //삭제 수행
+        //참여자 삭제
+        List<Participant> participantList = participantRepository.findByMeetingId(meetingId);
+        for (Participant participant : participantList) {
+            
+            //출석부 삭제
+            List<Attend> attendList = attendRepository.findByParticipant(participant);
+            for (Attend attend : attendList) {
+                attendRepository.delete(attend);
+            }
+            participantRepository.delete(participant);
+        }
+        
         meetingRepository.delete(target);
         return target;
     }

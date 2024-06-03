@@ -1,5 +1,4 @@
 package com.backend.backend.entity;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,8 +31,10 @@ public class Meeting {
     @JoinColumn(name = "user_id")
     private User user;//주최자정보
 
-    // @Column
-    // private Date date;//일시
+    // @OneToMany(mappedBy = "meeting", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    // private List<Participant> participants = new ArrayList<>();
+
+
 
     public void patch(Meeting meeting) {
         if(meeting.meetingName != null){
@@ -41,4 +42,11 @@ public class Meeting {
         }
         
     }
+
+    // public void patch(String meetingName) {
+    //     if(meetingName != null){
+    //         this.meetingName= meetingName;
+    //     }
+        
+    // }
 }

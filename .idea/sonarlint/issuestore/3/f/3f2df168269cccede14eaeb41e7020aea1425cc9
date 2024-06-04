@@ -1,0 +1,27 @@
+
+W
+java:S4973N"<Strings and Boxed types should be compared using "equals()".(›şäœÿÿÿÿÿ
+`
+java:S2259N"EA "NullPointerException" could be thrown; "meeting" is nullable here.(›şäœÿÿÿÿÿ
+]
+java:S2259C"BA "NullPointerException" could be thrown; "user" is nullable here.(½Šìûÿÿÿÿ
+S
+java:S2589N"8Remove this expression which always evaluates to "false"(›şäœÿÿÿÿÿ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+F
+java:S1168E"+Return an empty collection instead of null.(¡éÆøÿÿÿÿ
+S
+java:S1854L"8Remove this useless assignment to local variable "user".(àÜÜÃûÿÿÿÿ
+D
+java:S1481L")Remove this unused "user" local variable.(àÜÜÃûÿÿÿÿ
+A
+java:S1168O"+Return an empty collection instead of null.(µß€Ù
+F
+java:S1168T"+Return an empty collection instead of null.(ûºâãüÿÿÿÿ

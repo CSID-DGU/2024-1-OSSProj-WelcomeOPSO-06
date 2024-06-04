@@ -1,0 +1,14 @@
+
+`	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(šßŠ‡ûÿÿÿÿ
+R
+java:S49732"<Strings and Boxed types should be compared using "equals()".(Ë½Ù—
+X
+java:S22592"BA "NullPointerException" could be thrown; "user" is nullable here.(Ë½Ù—
+[
+java:S22592"EA "NullPointerException" could be thrown; "meeting" is nullable here.(Ë½Ù—
+X
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄÞ
+X
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄÞ
+V	java:S125"<This block of commented-out lines of code should be removed.(º‹¢ùýÿÿÿÿ
+V	java:S125%"<This block of commented-out lines of code should be removed.(Êý™óúÿÿÿÿ

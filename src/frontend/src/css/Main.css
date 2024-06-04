@@ -1,4 +1,4 @@
-.board-item {
+.backend-item {
   background-color: #f9f9f9; /* 게시판 아이템 배경색 */
   padding: 10px;
   margin-bottom: 10px;
@@ -6,24 +6,24 @@
   color: black;
 }
 
-.board-item:hover {
+.backend-item:hover {
   background-color: #eaeaea; /* 호버 시 배경색 변경 */
 }
 
-.board-item h3 {
+.backend-item h3 {
   margin-top: 0;
   color: black;
 }
 
-.board-item p {
+.backend-item p {
   margin-bottom: 5px;
 }
 
-.board-item .info {
+.backend-item .info {
   display: flex;
   justify-content: space-between;
 }
-.board-it {
+.backend-it {
   color: black;
 }
 

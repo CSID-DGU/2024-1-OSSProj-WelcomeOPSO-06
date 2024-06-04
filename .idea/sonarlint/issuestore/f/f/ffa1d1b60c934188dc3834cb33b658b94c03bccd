@@ -1,0 +1,25 @@
+
+ 
+java:S1488a"_Immediately return this expression instead of assigning it to the temporary variable "updated".(­“ê®þÿÿÿÿJ$e3fcc939-e959-4ea5-991f-448d30032d1e
+}
+java:S4973\"<Strings and Boxed types should be compared using "equals()".(Š—´ûÿÿÿÿJ$6db4d22a-ac6b-48d8-80d6-5a2e5ab7d3b2
+}
+java:S4973\"<Strings and Boxed types should be compared using "equals()".(Š—´ûÿÿÿÿJ$c351599d-99c6-4403-8a8a-84879b0543f2
+}
+java:S4973k"<Strings and Boxed types should be compared using "equals()".(ª¬ØßþÿÿÿÿJ$55d9df60-c072-4f3e-95a5-d05cce2df541
+ƒ
+java:S2259k"BA "NullPointerException" could be thrown; "user" is nullable here.(ª¬ØßþÿÿÿÿJ$7ae10056-f09d-483e-9b39-166eac516af0
+ƒ
+java:S2259&"BA "NullPointerException" could be thrown; "user" is nullable here.(¤‚ãöþÿÿÿÿJ$ba710d76-139e-4498-b151-cb353ac2375b
+~
+java:S2259,"BA "NullPointerException" could be thrown; "user" is nullable here.(‚¡“ðJ$e27e7213-3b57-4e4b-b01c-7282cd3e95eb
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞJ$ea1ae365-d769-4e02-a49e-aa4405a84250
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞJ$300907a9-7276-4622-bd69-7ffe7be30bab
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞJ$e128b04b-bf62-41ab-bc0c-271f4a51ac29
+~
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄÞJ$56df4434-0e91-4cdc-9c47-64e283127180
+l
+java:S1168/"+Return an empty collection instead of null.(¯Þ¡àûÿÿÿÿJ$4ab659b7-496a-4a73-95f7-c6742ee70345

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.backend.dto.MeetingRequest;
+import com.backend.backend.dto.MeetingResponse;
 import com.backend.backend.entity.Meeting;
 import com.backend.backend.service.MeetingService;
 
@@ -31,22 +32,23 @@ public class MeetingController {
     
     //주최자 모임 목록
     @GetMapping("/meetings/organizer")
-    public List<Meeting> getAllMeetings(Principal principal) {
+    public List<MeetingResponse> getAllMeetings(Principal principal) {
         String email = principal.getName();
         return meetingService.getAllMeetings(email);
     }
 
     //참여자 모임 목록
     @GetMapping("/meetings/partcipant")
-    public List<Meeting> getMyMeetings(Principal principal) {
+    public List<MeetingResponse> getMyMeetings(Principal principal) {
         String email = principal.getName();
         return meetingService.getMyMeetings(email);
     }
      // 모임 상세 페이지-누구나 모임아이디만 있으면 접근가능
     @GetMapping("/meetings/{meetingId}")
-    public Meeting show(@PathVariable Long meetingId){
+    public MeetingResponse show(@PathVariable Long meetingId){
         //데이터 가져오기
-        return meetingService.show(meetingId);
+        Meeting meeting = meetingService.show(meetingId);
+        return new MeetingResponse(meeting.getId(),meeting.getMeetingName(),meeting.getUser().getEmail());
     }
 
     //모임 생성-주최자
@@ -73,7 +75,7 @@ public class MeetingController {
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         
-        return new ResponseEntity<Meeting>(meeting, HttpStatus.OK);
+        return new ResponseEntity<MeetingResponse>(new MeetingResponse(meeting.getId(), meeting.getMeetingName(), meeting.getUser().getEmail()), HttpStatus.OK);
         
     }
     //모임이름 수정
@@ -87,8 +89,8 @@ public class MeetingController {
         } catch(Exception e){
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-
-        return new ResponseEntity<Meeting>(updated, HttpStatus.OK);
+        MeetingResponse response = new MeetingResponse(updated.getId(), updated.getMeetingName(), updated.getUser().getEmail());
+        return new ResponseEntity<MeetingResponse>(response, HttpStatus.OK);
     }
 
     //모임삭제

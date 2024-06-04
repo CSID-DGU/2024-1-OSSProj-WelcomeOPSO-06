@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.backend.dto.MeetingRequest;
+import com.backend.backend.dto.MeetingResponse;
 import com.backend.backend.entity.Attend;
 import com.backend.backend.entity.Meeting;
 import com.backend.backend.entity.Participant;
@@ -33,13 +34,25 @@ public class MeetingService {
     private AttendRepository attendRepository;
 
     //주최자 모임목록
-    public List<Meeting> getAllMeetings(String email) {
+    public List<MeetingResponse> getAllMeetings(String email) {
         User user = userRepository.findByEmail(email).orElse(null);
-        return meetingRepository.findByUserId(user.getId());
+        List<Meeting> meetingList = meetingRepository.findByUserId(user.getId());
+
+        if (meetingList == null || meetingList.isEmpty()) {
+            return null;//주최중인 모임 없음
+        }
+        List<MeetingResponse> responseList = new ArrayList<>();
+        
+        for (Meeting meeting : meetingList) {
+        MeetingResponse response = new MeetingResponse(meeting.getId(),meeting.getMeetingName(),email);
+        responseList.add(response);
+        }
+
+        return responseList;
     }
 
     //참여자 모임목록
-    public List<Meeting> getMyMeetings(String email) {
+    public List<MeetingResponse> getMyMeetings(String email) {
         User user = userRepository.findByEmail(email).orElse(null);//참여자
         List<Participant> participants =  participantRepository.findByUserId(user.getId());
         
@@ -48,10 +61,11 @@ public class MeetingService {
         }
 
         // 참여자가 참여한 모임 목록 추출
-        List<Meeting> myMeetings = new ArrayList<>();
+        List<MeetingResponse> myMeetings = new ArrayList<>();
 
         for (Participant participant : participants) {
-            myMeetings.add(participant.getMeeting());
+            Meeting meeting = participant.getMeeting();
+            myMeetings.add(new MeetingResponse(meeting.getId(),meeting.getMeetingName(), meeting.getUser().getEmail()));
         }
 
         return myMeetings;

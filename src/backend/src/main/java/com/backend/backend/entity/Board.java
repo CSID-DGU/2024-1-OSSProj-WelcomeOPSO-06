@@ -1,16 +1,21 @@
 package com.backend.backend.entity;
 
 import com.backend.backend.dto.BoardRequestsDto;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
+@ToString
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -25,30 +30,27 @@ public class Board extends Timestamped {
     @Column(nullable = false, length = 65535)
     private String contents;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-    private List<Comment> commentList = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "meeting_id", nullable = false)
+    private Meeting meeting;
 
     @Builder
-    private Board(BoardRequestsDto requestsDto, User user) {
+    private Board(BoardRequestsDto requestsDto, Meeting meeting) {
         this.title = requestsDto.getTitle();
         this.contents = requestsDto.getContents();
-        this.user = user;
+        this.meeting = meeting;
     }
 
-    public void update(BoardRequestsDto requestsDto, User user) {
+    public void update(BoardRequestsDto requestsDto, Meeting meeting) {
         this.title = requestsDto.getTitle();
         this.contents = requestsDto.getContents();
-        this.user = user;
+        this.meeting = meeting;
     }
 
-    public static Board of(BoardRequestsDto requestsDto, User user) {
+    public static Board of(BoardRequestsDto requestsDto, Meeting meeting) {
         return Board.builder()
                 .requestsDto(requestsDto)
-                .user(user)
+                .meeting(meeting)
                 .build();
     }
 }

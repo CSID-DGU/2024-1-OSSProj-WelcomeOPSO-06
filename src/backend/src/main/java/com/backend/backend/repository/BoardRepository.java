@@ -1,17 +1,17 @@
 package com.backend.backend.repository;
 
-import com.backend.backend.entity.Board;
-import com.backend.backend.entity.User;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import com.backend.backend.entity.Board;
 
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
     List<Board> findAllByOrderByModifiedAtDesc();
-    Optional<Board> findByIdAndUser(Long id, User user);
-
-    void deleteAllByUser(User user);
+    //Optional<Board> findById(Long id);
+    Optional<Board> findByMeetingId(Long meetingId);
+    //void deleteAllByUser(User user);
 }

@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.backend.dto.MeetingRequest;
 import com.backend.backend.entity.Attend;
+import com.backend.backend.entity.Board;
 import com.backend.backend.entity.Meeting;
 import com.backend.backend.entity.Participant;
 import com.backend.backend.entity.User;
 import com.backend.backend.repository.AttendRepository;
+import com.backend.backend.repository.BoardRepository;
 import com.backend.backend.repository.MeetingRepository;
 import com.backend.backend.repository.ParticipantRepository;
 import com.backend.backend.repository.UserRepository;
@@ -31,6 +33,8 @@ public class MeetingService {
     private ParticipantRepository participantRepository;
     @Autowired
     private AttendRepository attendRepository;
+    @Autowired
+    private BoardRepository boardRepository;
 
     //주최자 모임목록
     public List<Meeting> getAllMeetings(String email) {
@@ -108,6 +112,12 @@ public class MeetingService {
             return null;
         }
         //삭제 수행
+        //홍보게시글 삭제
+        Board board = boardRepository.findByMeetingId(meetingId).orElse(null);
+        if (board != null){
+            boardRepository.delete(board);
+        }
+
         //참여자 삭제
         List<Participant> participantList = participantRepository.findByMeetingId(meetingId);
         for (Participant participant : participantList) {

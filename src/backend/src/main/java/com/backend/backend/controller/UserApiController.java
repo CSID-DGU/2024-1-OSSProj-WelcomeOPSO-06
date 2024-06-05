@@ -12,11 +12,10 @@ import com.backend.backend.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/api")
+//@RequestMapping("/api")
 public class UserApiController {
 
     private final UserService userService;

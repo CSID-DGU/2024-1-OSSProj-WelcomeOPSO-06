@@ -43,7 +43,7 @@ public class WebSecurityConfig {
                         .anyRequest().authenticated()
                 ).formLogin((formLogin) ->
                         formLogin.loginPage("/login")
-                                .defaultSuccessUrl("http://localhost:8080/meetings/1")
+                                .defaultSuccessUrl("http://localhost:3000/main")
                 ).logout((logout) ->
                         logout.logoutSuccessUrl("/login")
                                 .invalidateHttpSession(true)

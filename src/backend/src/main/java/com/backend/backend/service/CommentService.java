@@ -1,5 +1,13 @@
 package com.backend.backend.service;
 
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.backend.backend.common.ApiResponseDto;
 import com.backend.backend.common.ResponseUtils;
 import com.backend.backend.common.SuccessResponse;
@@ -9,18 +17,11 @@ import com.backend.backend.entity.Board;
 import com.backend.backend.entity.Comment;
 import com.backend.backend.entity.User;
 import com.backend.backend.entity.enumSet.ErrorType;
-import com.backend.backend.entity.enumSet.UserRoleEnum;
 import com.backend.backend.exception.RestApiException;
 import com.backend.backend.repository.BoardRepository;
 import com.backend.backend.repository.CommentRepository;
-import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
@@ -68,7 +69,7 @@ public class CommentService {
 
         // 댓글의 작성자와 수정하려는 사용자의 정보가 일치하는지 확인 (수정하려는 사용자가 관리자라면 댓글 수정 가능)
         Optional<Comment> found = commentRepository.findByIdAndUser(id, user);
-        if (found.isEmpty() && user.getRole() == UserRoleEnum.USER) {
+        if (found.isEmpty() && user.getId() == comment.get().getUser().getId()) {
             throw new RestApiException(ErrorType.NOT_WRITER);
         }
 
@@ -93,7 +94,7 @@ public class CommentService {
 
         // 댓글의 작성자와 삭제하려는 사용자의 정보가 일치하는지 확인 (삭제하려는 사용자가 관리자라면 댓글 삭제 가능)
         Optional<Comment> found = commentRepository.findByIdAndUser(id, user);
-        if (found.isEmpty() && user.getRole() == UserRoleEnum.USER) {
+        if (found.isEmpty() && user.getId() == comment.get().getUser().getId()) {
             throw new RestApiException(ErrorType.NOT_WRITER);
         }
 

@@ -3,20 +3,14 @@ package com.backend.backend.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.backend.backend.entity.*;
+import com.backend.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.backend.dto.MeetingRequest;
 import com.backend.backend.dto.MeetingResponse;
-import com.backend.backend.entity.Attend;
-import com.backend.backend.entity.Meeting;
-import com.backend.backend.entity.Participant;
-import com.backend.backend.entity.User;
-import com.backend.backend.repository.AttendRepository;
-import com.backend.backend.repository.MeetingRepository;
-import com.backend.backend.repository.ParticipantRepository;
-import com.backend.backend.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,6 +26,8 @@ public class MeetingService {
     private ParticipantRepository participantRepository;
     @Autowired
     private AttendRepository attendRepository;
+    @Autowired
+    private BoardRepository boardRepository;
 
     //주최자 모임목록
     public List<MeetingResponse> getAllMeetings(String email) {
@@ -127,6 +123,11 @@ public class MeetingService {
         //잘못된 요청 처리
         if(target ==null || target.getUser().getId()!=user.getId()){//타겟이 없거나, 타겟의 주최자 아이디가 요청한 사용자가 아닌ㄱ
             return null;
+        }
+
+        Board board = boardRepository.findByMeetingId(meetingId).orElse(null);
+        if (board != null){
+            boardRepository.delete(board);
         }
         //삭제 수행
         //참여자 삭제

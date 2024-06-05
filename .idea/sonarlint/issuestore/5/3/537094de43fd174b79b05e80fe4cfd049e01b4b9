@@ -1,0 +1,11 @@
+
+]
+java:S1192*"GDefine a constant instead of duplicating this literal "/login" 3 times.(®ÆƒŒ
+L
+java:S1611"1Remove the parentheses around the "web" parameter(Ôèüøúÿÿÿÿ
+H
+java:S1611)"3Remove the parentheses around the "authz" parameter(ıÑ”?
+M
+java:S1611,"7Remove the parentheses around the "formLogin" parameter(ìÅªò
+O
+java:S1611/"4Remove the parentheses around the "logout" parameter(¹‰¦ëûÿÿÿÿ

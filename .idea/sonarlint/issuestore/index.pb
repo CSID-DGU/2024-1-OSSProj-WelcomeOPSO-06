@@ -1,0 +1,25 @@
+
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+y
+Isrc/backend/src/main/java/com/backend/backend/service/MeetingService.java,f/f/ffa1d1b60c934188dc3834cb33b658b94c03bccd
+u
+Esrc/backend/src/main/java/com/backend/backend/entity/Timestamped.java,4/9/499221c27d2e5ad35e1d799f5785b99f1855bfbd
+
+Osrc/backend/src/main/java/com/backend/backend/controller/CommentController.java,b/4/b4f20694402c13f1283b80e6b8a7952034669929
+}
+Msrc/backend/src/main/java/com/backend/backend/repository/BoardRepository.java,0/8/080bf7f44a424f2cf8c78ba0252561ec0627f21c
+v
+Fsrc/backend/src/main/java/com/backend/backend/service/UserService.java,f/a/fa9aea011698f721624991c00cde228608729ab4
+}
+Msrc/backend/src/main/java/com/backend/backend/controller/BoardController.java,2/b/2bdf772fd559d22746d1cc978f22e4f4643bc469
+y
+Isrc/backend/src/main/java/com/backend/backend/service/CommentService.java,7/0/7065ce86a0cd795c49d2ebb5c11183ba9f3ef97f
+n
+>src/backend/src/main/java/com/backend/backend/entity/User.java,9/7/974c3b2bbcff8ae97dc26c4fc0dfe423689979e1
+H
+src/backend/build.gradle,7/8/782853a19a6d6ba4064c053fcb535b707a3ea738
+{
+Ksrc/backend/src/main/java/com/backend/backend/config/WebSecurityConfig.java,5/3/537094de43fd174b79b05e80fe4cfd049e01b4b9
+w
+Gsrc/backend/src/main/java/com/backend/backend/config/SwaggerConfig.java,c/b/cbeb491ecc9d10f4d3f8661f81976a863ec1b4e3

@@ -60,7 +60,7 @@ public class ScanController {
             AttendRequest dto = new AttendRequest(null,date,attendStatus);
             Attend checked = attendService.checkIn(meetingId, dto, email);
 
-            return ResponseEntity.ok().body("출석체크가 완료되었습니다.");
+            return ResponseEntity.ok().body("출석체크가 완료되었습니다. 출석상태: "+attendStatus.toString());
         }catch (IllegalArgumentException e) {
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (IllegalStateException e) {

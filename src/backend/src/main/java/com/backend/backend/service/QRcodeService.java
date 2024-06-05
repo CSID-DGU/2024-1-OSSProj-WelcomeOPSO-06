@@ -1,13 +1,11 @@
 package com.backend.backend.service;
 
 import java.io.ByteArrayOutputStream;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -48,8 +46,7 @@ public class QRcodeService {
         int height = 200;
 
         if (meeting.getUser().getId() != user.getId()){
-            return ResponseEntity.badRequest()
-                    .body("모임 주최 권한이 없습니다.".getBytes(StandardCharsets.UTF_8));
+            throw new IllegalArgumentException("모임 주최 권한이 없습니다.");
         }
 
         // 현재 시간 가져오기
@@ -68,8 +65,7 @@ public class QRcodeService {
         }
 
         if(attendStatus==AttendStatus.ABSENCE){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("출석시간 만료 상태입니다. 큐알코드를 생성할 수 없습니다.".getBytes(StandardCharsets.UTF_8));
+            throw new IllegalStateException("출석 시간이 만료되어 큐알코드를 생성할 수 없습니다.");
         }
         // 만료 시간 설정: QR 코드 생성 후 15초 후
         LocalDateTime expirationTime = LocalDateTime.now().plusSeconds(15);

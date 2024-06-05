@@ -4,15 +4,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.backend.backend.dto.AttendParticipantResponse;
-import com.backend.backend.dto.AttendResponse;
-import com.beust.ah.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.backend.domain.AttendStatus;
+import com.backend.backend.dto.AttendParticipantResponse;
 import com.backend.backend.dto.AttendRequest;
+import com.backend.backend.dto.AttendResponse;
 import com.backend.backend.entity.Attend;
 import com.backend.backend.entity.Meeting;
 import com.backend.backend.entity.Participant;
@@ -41,23 +40,23 @@ public class AttendService {
         
         //유저나 모임이 없는경우
         if (user == null || meeting == null) {
-            throw new IllegalArgumentException("User or meeting not found.");
+            throw new IllegalArgumentException("참여자 또는 모임이 없습니다.");
         }
         //참여자정보 확인
         Participant participant = participantRepository.findByMeetingIdAndUserId(meetingId, user.getId()).orElse(null);
         if (participant == null) {
-            throw new IllegalArgumentException("Participant not found for the given user and meeting.");
+            throw new IllegalArgumentException("해당 모임의 참여자가 아닙니다.");
         }
     
         // 출석부가 생성되었는지 확인
         Attend existingAttend = attendRepository.findByParticipantAndDate(participant, dto.getDate()).orElse(null);
         if (existingAttend==null) {
-            throw new IllegalStateException("Attendance information not found for the given participant and date.");
+            throw new IllegalStateException("출석이 시작되지 않았습니다.");
         }
 
-        // 출석 상태가 "대기 상태"인 경우에만 출석을 확인
+        // 출석 상태가 "결석 상태"인 경우에만 출석을 결석
         if (existingAttend.getAttendStatus() != AttendStatus.ABSENCE) {
-            throw new IllegalStateException("Attendance already confirmed for the given participant and date.");
+            throw new IllegalStateException("이미 출석체크가 완료되었습니다.");
         }
         // 출석 상태를 변경하여 저장
         existingAttend.setAttendStatus(dto.getAttendStatus());
@@ -69,9 +68,12 @@ public class AttendService {
         User user = userRepository.findByEmail(email).orElse(null);//참여자
         Participant participant = participantRepository.findByMeetingIdAndUserId(meetingId, user.getId()).orElse(null);
         if(participant==null){
-            return null;//참여하고 있는 모임이 없다.
+            throw new IllegalArgumentException("참여중인 모임이 아닙니다.");//참여하고 있는 모임이 없다.
         }
         List<Attend> attendList = attendRepository.findByParticipant(participant);
+        if(attendList==null || attendList.isEmpty()){
+            throw new IllegalStateException("출석기록이 없습니다.");
+        }
 
         List<AttendParticipantResponse> responseList = new ArrayList<>();
         for (Attend attend : attendList){
@@ -85,12 +87,15 @@ public class AttendService {
         User user = userRepository.findByEmail(email).orElse(null);//주최자
         Meeting meeting = meetingRepository.findById(meetingId).orElse(null);
         if(meeting.getId()!=meetingId || meeting==null){
-            return null;//주최자가 아님
+            throw new IllegalArgumentException("모임이 없습니다.");//미팅확인
+        }
+        if(meeting.getUser().getId()!=user.getId()){
+            throw new IllegalArgumentException("주최자가 아닙니다.");//주최자가 아닌경우
         }
         //모임 아이디로 참여자 찾기
         List<Participant> participants = participantRepository.findByMeetingId(meetingId);
-        if(participants==null){
-            return null;//참여자 없음
+        if(participants==null || participants.isEmpty()){
+            throw new IllegalStateException("참여자가 없습니다.");//참여자 없음
         }
         // 해당 날짜의 각 참여자의 출석 정보 가져오기
         List<AttendResponse> responseList = new ArrayList<>();
@@ -100,6 +105,9 @@ public class AttendService {
             if (attendance != null) {//해당날짜에 출석 정보가 없는경우(나중에 가입한경우)
                 responseList.add(new AttendResponse(date, participant.getUser().getEmail(),attendance.getAttendStatus().toString()));
             }
+        }
+        if(responseList==null || responseList.isEmpty()){//출석정보가 없는경우
+            throw new IllegalStateException("출석기록이 없습니다.");
         }
         return responseList;
     }
@@ -112,13 +120,18 @@ public class AttendService {
         
         //주최자나 모임이 없는경우
         if (user == null || meeting == null) {
-            throw new IllegalArgumentException("User or meeting not found.");
+            throw new IllegalArgumentException("주최자 또는 모임이 없습니다.");
+        }
+        //주최자랑 요청자랑 같은지 확인
+        if(user.getId()!=meeting.getUser().getId()){
+            throw new IllegalArgumentException("주최자가 아닙니다.");
+        
         }
 
         //참여자목록 불러오기
         List<Participant> participantList = participantRepository.findByMeetingId(meetingId);
-        if (participantList == null) {
-            throw new IllegalArgumentException("참여자가 없습니다.");
+        if (participantList == null || participantList.isEmpty()) {
+            throw new IllegalStateException("참여자가 없습니다.");
         }
 
         // 출석 정보 생성
@@ -127,7 +140,7 @@ public class AttendService {
         Attend existingAttend = attendRepository.findByParticipantAndDate(participant, date).orElse(null);
         if (existingAttend != null) {
             // 이미 출석 정보가 있는 경우 롤백
-            throw new IllegalStateException("이미 출석부가 생성되어 있습니다.");
+            throw new IllegalStateException("이미 출석정보가 존재합니다.");
         }
 
         // 출석 정보 생성

@@ -3,14 +3,22 @@ package com.backend.backend.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.backend.backend.entity.*;
-import com.backend.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.backend.dto.MeetingRequest;
 import com.backend.backend.dto.MeetingResponse;
+import com.backend.backend.entity.Attend;
+import com.backend.backend.entity.Board;
+import com.backend.backend.entity.Meeting;
+import com.backend.backend.entity.Participant;
+import com.backend.backend.entity.User;
+import com.backend.backend.repository.AttendRepository;
+import com.backend.backend.repository.BoardRepository;
+import com.backend.backend.repository.MeetingRepository;
+import com.backend.backend.repository.ParticipantRepository;
+import com.backend.backend.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -69,7 +77,11 @@ public class MeetingService {
     }
 
     public Meeting show(Long meetingId) {
-        return meetingRepository.findById(meetingId).orElse(null);
+        Meeting meeting = meetingRepository.findById(meetingId).orElse(null);
+        if(meeting==null){
+            throw new IllegalArgumentException("해당 모임이 없습니다.");
+        }
+        return meeting;
     }
 
     @Transactional
@@ -100,10 +112,15 @@ public class MeetingService {
         //잘못된 요청 처리
         if(target == null || meetingId!=updateMeeting.getId() || target.getUser().getId()!=updateMeeting.getUser().getId()){
             log.info("잘못된 요청! id:{},meeting:{}",meetingId,meetingRepository.toString());
-            return null;
+            throw new IllegalArgumentException("잘못된 요청입니다.");
         }
+        
         target.patch(updateMeeting);
+        
         Meeting updated =meetingRepository.save(target);
+        if(updated ==null){
+            throw new IllegalStateException("같은 이름의 모임이 존재합니다.");
+        }
         return updated;
 
 
@@ -122,7 +139,7 @@ public class MeetingService {
         Meeting target = meetingRepository.findById(meetingId).orElse(null);
         //잘못된 요청 처리
         if(target ==null || target.getUser().getId()!=user.getId()){//타겟이 없거나, 타겟의 주최자 아이디가 요청한 사용자가 아닌ㄱ
-            return null;
+            throw new IllegalArgumentException("해당 모임이 없거나 삭제권한이 없습니다.");
         }
 
         Board board = boardRepository.findByMeetingId(meetingId).orElse(null);
@@ -132,21 +149,25 @@ public class MeetingService {
         //삭제 수행
         //참여자 삭제
         List<Participant> participantList = participantRepository.findByMeetingId(meetingId);
-        for (Participant participant : participantList) {
-            
-            //출석부 삭제
-            List<Attend> attendList = attendRepository.findByParticipant(participant);
-            for (Attend attend : attendList) {
-                attendRepository.delete(attend);
+        if (participantList != null && !participantList.isEmpty()){
+
+            for (Participant participant : participantList) {
+                
+                //출석부 삭제
+                List<Attend> attendList = attendRepository.findByParticipant(participant);
+                if(attendList != null && !attendList.isEmpty()){
+
+                    for (Attend attend : attendList) {
+                        attendRepository.delete(attend);
+                    }
+                    participantRepository.delete(participant);
+                }
             }
-            participantRepository.delete(participant);
         }
-        
         meetingRepository.delete(target);
         return target;
     }
 
-    
 
-    
+
 }

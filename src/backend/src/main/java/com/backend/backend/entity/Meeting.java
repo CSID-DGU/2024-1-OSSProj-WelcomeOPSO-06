@@ -38,6 +38,7 @@ public class Meeting {
 
     public void patch(Meeting meeting) {
         if(meeting.meetingName != null){
+
             this.meetingName= meeting.meetingName;
         }
         

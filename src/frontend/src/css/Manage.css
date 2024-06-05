@@ -1,0 +1,50 @@
+.manage-container {
+  padding: 20px;
+}
+
+.manage-container h2 {
+  margin-top: 20px;
+}
+
+.manage-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.manage-container li {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.manage-container li p {
+  margin: 5px 0 0;
+}
+
+.groupname {
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.groupname a {
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.manage-header {
+  justify-content: space-between;
+  display: flex;
+}
+
+.make-button {
+  width: 100px;
+  height: 30px;
+  margin-top: 15px;
+  font-size: 12px;
+  padding-bottom: 20px;
+  border-radius: 5px;
+  line-height: 7px;
+}

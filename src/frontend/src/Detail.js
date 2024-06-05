@@ -7,6 +7,8 @@ const BoardDetail = () => {
   const location = useLocation();
   const { state } = location;
   const [showQR, setShowQR] = useState(false);
+  const [qrTimeLimit, setQRTimeLimit] = useState(15); // QR 제한 시간
+  const [lateTimeLimit, setLateTimeLimit] = useState(10); // 지각 시간
 
   const handleShowQR = () => {
     setShowQR(true);
@@ -47,6 +49,32 @@ const BoardDetail = () => {
           <button className="Qrbutton" onClick={handleShowQR}>
             QR 생성
           </button>
+          {showQR && (
+            <div className="floating-qr">
+              <h3>QR 생성</h3>
+              <div>
+                <label htmlFor="qrTimeLimit">QR 제한 시간 (분): </label>
+                <input
+                  type="number"
+                  id="qrTimeLimit"
+                  value={qrTimeLimit}
+                  onChange={(e) => setQRTimeLimit(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="lateTimeLimit">지각 시간 (분): </label>
+                <input
+                  type="number"
+                  id="lateTimeLimit"
+                  value={lateTimeLimit}
+                  onChange={(e) => setLateTimeLimit(e.target.value)}
+                />
+              </div>
+              <button>생성하기</button>
+              {/* 생성된 QR 표시 */}
+              {/* <QRCode value={qrCode} /> */}
+            </div>
+          )}
           <Nav1 />
         </div>
       </div>

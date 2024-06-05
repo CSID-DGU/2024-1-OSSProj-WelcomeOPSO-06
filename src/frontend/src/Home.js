@@ -8,9 +8,8 @@ const Home = () => {
     <div className="Homediv">
       <img className="logo" src={logo} alt="로고" />
       <p className="logotext">3초만에 끝나는 간편한 출석체크</p>
-      <Link to="/main">
-        <button>로그인</button>
-        <button>회원가입</button>
+      <Link to="/login">
+        <button>시작하기</button>
       </Link>
     </div>
   );

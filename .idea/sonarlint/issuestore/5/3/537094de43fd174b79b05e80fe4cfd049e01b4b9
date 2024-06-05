@@ -1,11 +1,11 @@
 
-]
-java:S1192*"GDefine a constant instead of duplicating this literal "/login" 3 times.(®ÆƒŒ
-L
-java:S1611"1Remove the parentheses around the "web" parameter(Ôèüøúÿÿÿÿ
-H
-java:S1611)"3Remove the parentheses around the "authz" parameter(ıÑ”?
-M
-java:S1611,"7Remove the parentheses around the "formLogin" parameter(ìÅªò
-O
-java:S1611/"4Remove the parentheses around the "logout" parameter(¹‰¦ëûÿÿÿÿ
+ƒ
+java:S1192*"GDefine a constant instead of duplicating this literal "/login" 3 times.(®ÆƒŒJ$1f034e03-516e-49fd-891a-10817afa0e3e
+r
+java:S1611"1Remove the parentheses around the "web" parameter(ÔèüøúÿÿÿÿJ$433c74af-251b-4d19-a9e6-e18a14c43328
+n
+java:S1611)"3Remove the parentheses around the "authz" parameter(ıÑ”?J$f7090fd0-8f5b-4b5a-affe-4bf85da4b6d7
+s
+java:S1611,"7Remove the parentheses around the "formLogin" parameter(ìÅªòJ$20161e4e-b3c8-4a2c-b563-07de7dbc12f5
+u
+java:S1611/"4Remove the parentheses around the "logout" parameter(¹‰¦ëûÿÿÿÿJ$39796a74-d921-462a-94aa-a454333cc7b3

@@ -1,8 +1,10 @@
 package com.backend.backend.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.backend.backend.dto.ParticipantResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +32,7 @@ public class ParticipantController {
         String email = principal.getName();
         Participant participant = participantService.register(meetingId, email);
         return (participant !=null) ?
-                ResponseEntity.status(HttpStatus.OK).body(participant):
+                ResponseEntity.status(HttpStatus.OK).build():
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
@@ -46,14 +48,21 @@ public class ParticipantController {
 
     //모임의 참여자 목록-누구나 볼수 있음
     @GetMapping("/meetings/{meetingId}/participants")
-    public List<Participant> getAllParticipants(@PathVariable Long meetingId) {
+    public List<ParticipantResponse> getAllParticipants(@PathVariable Long meetingId) {
 
         List<Participant> participantList = participantRepository.findByMeetingId(meetingId);
         
         if (participantList == null) {//참여자 없음
             return null;
         }
-        return participantList;
+        List<ParticipantResponse> responseList = new ArrayList<>();
+
+        for (Participant participant : participantList){
+            String participantEmail = participant.getUser().getEmail();
+            responseList.add(new ParticipantResponse(participantEmail));
+        }
+
+        return responseList;
     
     }
     

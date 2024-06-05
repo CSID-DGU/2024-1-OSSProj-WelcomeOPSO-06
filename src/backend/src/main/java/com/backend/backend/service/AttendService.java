@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.backend.backend.dto.AttendParticipantResponse;
+import com.backend.backend.dto.AttendResponse;
+import com.beust.ah.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,7 +56,7 @@ public class AttendService {
         }
 
         // 출석 상태가 "대기 상태"인 경우에만 출석을 확인
-        if (existingAttend.getAttendStatus() != AttendStatus.PENDING) {
+        if (existingAttend.getAttendStatus() != AttendStatus.ABSENCE) {
             throw new IllegalStateException("Attendance already confirmed for the given participant and date.");
         }
         // 출석 상태를 변경하여 저장
@@ -62,17 +65,23 @@ public class AttendService {
     }
 
     //참여자 출석 목록
-    public List<Attend> getParticipantAttendance(Long meetingId, String email) {
+    public List<AttendParticipantResponse> getParticipantAttendance(Long meetingId, String email) {
         User user = userRepository.findByEmail(email).orElse(null);//참여자
         Participant participant = participantRepository.findByMeetingIdAndUserId(meetingId, user.getId()).orElse(null);
         if(participant==null){
             return null;//참여하고 있는 모임이 없다.
         }
-        return attendRepository.findByParticipant(participant);
+        List<Attend> attendList = attendRepository.findByParticipant(participant);
+
+        List<AttendParticipantResponse> responseList = new ArrayList<>();
+        for (Attend attend : attendList){
+            responseList.add(new AttendParticipantResponse(attend.getDate(),attend.getAttendStatus().toString()));
+        }
+        return responseList;
     }
 
     //주최자 출석 목록
-    public List<Attend> getOrganizerAttendance(Long meetingId, LocalDate date, String email) {
+    public List<AttendResponse> getOrganizerAttendance(Long meetingId, LocalDate date, String email) {
         User user = userRepository.findByEmail(email).orElse(null);//주최자
         Meeting meeting = meetingRepository.findById(meetingId).orElse(null);
         if(meeting.getId()!=meetingId || meeting==null){
@@ -84,14 +93,15 @@ public class AttendService {
             return null;//참여자 없음
         }
         // 해당 날짜의 각 참여자의 출석 정보 가져오기
-        List<Attend> attendanceList = new ArrayList<>();
+        List<AttendResponse> responseList = new ArrayList<>();
+
         for (Participant participant : participants) {
             Attend attendance = attendRepository.findByParticipantAndDate(participant, date).orElse(null);
             if (attendance != null) {//해당날짜에 출석 정보가 없는경우(나중에 가입한경우)
-                attendanceList.add(attendance);
+                responseList.add(new AttendResponse(date, participant.getUser().getEmail(),attendance.getAttendStatus().toString()));
             }
         }
-        return attendanceList;
+        return responseList;
     }
 
     //해당 날짜 출석부 생성
@@ -124,7 +134,7 @@ public class AttendService {
         Attend attend = Attend.builder()
                         .participant(participant)// 참여자 설정
                         .date(date) // 출석 일자 설정
-                        .attendStatus(AttendStatus.PENDING)// 출석 상태 기본으로 대기 상태로 설정
+                        .attendStatus(AttendStatus.ABSENCE)// 출석 상태 기본으로 대기 상태로 설정
                         .build();
         
         // 출석 정보 저장

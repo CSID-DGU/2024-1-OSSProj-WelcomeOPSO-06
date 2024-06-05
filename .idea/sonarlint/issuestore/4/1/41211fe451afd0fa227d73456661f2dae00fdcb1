@@ -1,0 +1,25 @@
+
+}
+java:S4973Y"<Strings and Boxed types should be compared using "equals()".(¿ÏêÆüÿÿÿÿJ$bf3eb78b-b1b4-4428-8475-7464418d205b
+~
+java:S4973”"<Strings and Boxed types should be compared using "equals()".(¿ÏêÆüÿÿÿÿJ$42ef8019-9781-4d61-a3ed-e40178189b65
+†
+java:S2259Y"EA "NullPointerException" could be thrown; "meeting" is nullable here.(¿ÏêÆüÿÿÿÿJ$affd9d2b-bf34-46e8-9a85-67348ee4f064
+„
+java:S2259”"BA "NullPointerException" could be thrown; "user" is nullable here.(¿ÏêÆüÿÿÿÿJ$701c021c-b514-4c93-a425-4463ea31a829
+ƒ
+java:S2259Y"BA "NullPointerException" could be thrown; "user" is nullable here.(¿ÏêÆüÿÿÿÿJ$d9b7b066-cf3d-463e-9757-9a838203e556
+~
+java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞJ$bbe179e2-8552-4030-b366-c2fb96f25512
+~
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞJ$5e8b97c7-e433-4732-a3fa-47ba36e29508
+~
+java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄŞJ$87771016-61f9-4d11-9b81-21b72f60c9e2
+¶
+java:S62049"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹J$ab8d65c8-9e69-42a9-b13b-470c9bc69e07
+|	java:S125?"<This block of commented-out lines of code should be removed.(·ïè€ûÿÿÿÿJ$688d5b37-0c62-4145-9aec-8c6b571e4e47
+|	java:S125B"<This block of commented-out lines of code should be removed.(Ü¤¯ÖüÿÿÿÿJ$3d0d65be-17ce-473e-8733-1379cfd2251a
+¶
+java:S6204r"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹J$4049960b-4490-4079-a060-5684a4d94a09
+|	java:S125y"<This block of commented-out lines of code should be removed.(·ïè€ûÿÿÿÿJ$8f3bc656-9b84-4dbb-a0d7-12161d3a881a
+|	java:S125|"<This block of commented-out lines of code should be removed.(Ü¤¯ÖüÿÿÿÿJ$d34fc68a-0be6-481b-8aca-e0bda85659c4

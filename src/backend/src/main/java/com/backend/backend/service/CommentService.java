@@ -14,6 +14,8 @@ import com.backend.backend.exception.RestApiException;
 import com.backend.backend.repository.BoardRepository;
 import com.backend.backend.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +28,12 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final BoardRepository boardRepository;
-
+    private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
     // 댓글 작성
     @Transactional
     public ApiResponseDto<CommentResponseDto> createComment(Long id, CommentRequestDto requestDto, User user) {
 
+        logger.debug("게시글 ID: " + id);
         // 선택한 게시글 DB 조회
         Optional<Board> board = boardRepository.findById(id);
         if (board.isEmpty()) {

@@ -59,3 +59,13 @@ u
 Esrc/backend/src/main/java/com/backend/backend/dto/MeetingRequest.java,9/7/97821f60c3935207969d125449eccc1b52dafbdc
 x
 Hsrc/backend/src/main/java/com/backend/backend/dto/CommentRequestDto.java,a/7/a7ee5f50fccf5263509e301905af98be97fda249
+|
+Lsrc/backend/src/main/java/com/backend/backend/controller/ScanController.java,a/9/a9e3d1be1c531fee9b3d4c5acd22dada4f92bd5a
+~
+Nsrc/backend/src/main/java/com/backend/backend/controller/QRcodeController.java,4/d/4d620e2648ff4e66e985be3f572bddefbd7592b3
+
+Osrc/backend/src/main/java/com/backend/backend/controller/UserApiController.java,4/1/4135ecdedea967de693739a5811697114951e56f
+€
+Psrc/backend/src/main/java/com/backend/backend/controller/UserViewController.java,4/8/48816a954c219e4c3bef198268ec07ec5e1c96a8
+N
+src/frontend/src/setupProxy.js,f/2/f25e70ea8968ede008257a3283756a921521903c

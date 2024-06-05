@@ -14,7 +14,7 @@ import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/main/post/board")
+@RequestMapping("/api")
 public class CommentController {
 
     private final CommentService commentService;

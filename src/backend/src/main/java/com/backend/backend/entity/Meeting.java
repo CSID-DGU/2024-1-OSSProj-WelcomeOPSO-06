@@ -32,9 +32,12 @@ public class Meeting {
     private User user;//주최자정보
 
 
+
     public void patch(Meeting meeting) {
         if(meeting.meetingName != null){
             this.meetingName= meeting.meetingName;
         }
     }
+
+  
 }

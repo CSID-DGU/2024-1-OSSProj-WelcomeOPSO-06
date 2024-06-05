@@ -48,7 +48,8 @@ public class AttendController {
 
     //주최자 출석 목록-날짜별, 주최자만 접근가능
     @GetMapping("/meetings/{meetingId}/attendance-list/{date}")
-    public List<Attend> getOrganizerAttendance (@PathVariable Long meetingId, @PathVariable  LocalDate date, Principal principal) {
+
+    public List<Attend> getOrganizerAttendance (@PathVariable Long meetingId, @PathVariable LocalDate date, Principal principal) {
         String email = principal.getName();//주최자
         return attendService.getOrganizerAttendance(meetingId,date,email);
     }

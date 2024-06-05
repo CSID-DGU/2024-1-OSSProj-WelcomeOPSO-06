@@ -8,13 +8,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.backend.dto.MeetingRequest;
-import com.backend.backend.entity.Attend;
+
 import com.backend.backend.entity.Board;
+
+import com.backend.backend.dto.MeetingResponse;
+import com.backend.backend.entity.Attend;
+
 import com.backend.backend.entity.Meeting;
 import com.backend.backend.entity.Participant;
 import com.backend.backend.entity.User;
 import com.backend.backend.repository.AttendRepository;
+
 import com.backend.backend.repository.BoardRepository;
+
 import com.backend.backend.repository.MeetingRepository;
 import com.backend.backend.repository.ParticipantRepository;
 import com.backend.backend.repository.UserRepository;
@@ -33,13 +39,49 @@ public class MeetingService {
     private ParticipantRepository participantRepository;
     @Autowired
     private AttendRepository attendRepository;
+
     @Autowired
     private BoardRepository boardRepository;
 
+    
     //주최자 모임목록
-    public List<Meeting> getAllMeetings(String email) {
+    public List<MeetingResponse> getAllMeetings(String email) {
+
         User user = userRepository.findByEmail(email).orElse(null);
-        return meetingRepository.findByUserId(user.getId());
+        List<Meeting> meetingList = meetingRepository.findByUserId(user.getId());
+
+        if (meetingList == null || meetingList.isEmpty()) {
+            return null;//주최중인 모임 없음
+        }
+        List<MeetingResponse> responseList = new ArrayList<>();
+        
+        for (Meeting meeting : meetingList) {
+        MeetingResponse response = new MeetingResponse(meeting.getId(),meeting.getMeetingName(),email);
+        responseList.add(response);
+        }
+
+        return responseList;
+    }
+
+    //참여자 모임목록
+    public List<MeetingResponse> getMyMeetings(String email) {
+        User user = userRepository.findByEmail(email).orElse(null);//참여자
+        List<Participant> participants =  participantRepository.findByUserId(user.getId());
+        
+        if (participants == null || participants.isEmpty()) {
+            return null;//참여중인 모임 없음
+        }
+
+        // 참여자가 참여한 모임 목록 추출
+        List<MeetingResponse> myMeetings = new ArrayList<>();
+
+        for (Participant participant : participants) {
+            Meeting meeting = participant.getMeeting();
+            myMeetings.add(new MeetingResponse(meeting.getId(),meeting.getMeetingName(), meeting.getUser().getEmail()));
+        }
+
+        return myMeetings;
+
     }
 
     //참여자 모임목록
@@ -92,7 +134,7 @@ public class MeetingService {
         //타겟 조회
         Meeting target = meetingRepository.findById(meetingId).orElse(null);
         //잘못된 요청 처리
-        
+
         if(target == null || meetingId!=updateMeeting.getId() || target.getUser().getId()!=updateMeeting.getUser().getId()){
             log.info("잘못된 요청! id:{},meeting:{}",meetingId,meetingRepository.toString());
             return null;
@@ -100,6 +142,14 @@ public class MeetingService {
         target.patch(updateMeeting);
         Meeting updated =meetingRepository.save(target);
         return updated;
+
+
+        // if(target==null){//해당 모임 없음.
+        //     return null;
+        // }
+        // target.patch(dto.getMeetingName());
+        // Meeting updated =meetingRepository.save(target);
+        // return updated;
     }
 
     @Transactional
@@ -112,11 +162,13 @@ public class MeetingService {
             return null;
         }
         //삭제 수행
+
         //홍보게시글 삭제
         Board board = boardRepository.findByMeetingId(meetingId).orElse(null);
         if (board != null){
             boardRepository.delete(board);
         }
+
 
         //참여자 삭제
         List<Participant> participantList = participantRepository.findByMeetingId(meetingId);
@@ -134,6 +186,8 @@ public class MeetingService {
         return target;
     }
 
+
+    
 
     
 

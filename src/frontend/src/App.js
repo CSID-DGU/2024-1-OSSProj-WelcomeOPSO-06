@@ -1,13 +1,17 @@
 // App.js
 
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Detail from "./Detail";
 import Home from "./Home";
 import Main from "./Main";
-import Detail from "./Detail";
 import "./css/App.css";
 
 function App() {
+  const [hello, setHello] = useState('');
+
+
+    
   return (
     <Router>
       <div className="App">
@@ -20,5 +24,6 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;

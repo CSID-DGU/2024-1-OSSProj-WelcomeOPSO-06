@@ -3,7 +3,9 @@ package com.backend.backend.service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.backend.backend.dto.CommentResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,6 +54,9 @@ public class BoardService {
             List<Comment> commentList = commentRepository.findByBoard(board);
             commentList.sort(Comparator.comparing(Comment::getModifiedAt)
                             .reversed());
+            List<CommentResponseDto> commentResponseDtoList = commentList.stream()
+                    .map(CommentResponseDto::from)
+                    .collect(Collectors.toList());
             
             // //기존코드
             // // 댓글리스트 작성일자 기준 내림차순 정렬
@@ -68,7 +73,7 @@ public class BoardService {
             // }
 
             // List<BoardResponseDto> 로 만들기 위해 board 를 BoardResponseDto 로 만들고, list 에 dto 를 하나씩 넣는다.
-            responseDtoList.add(BoardResponseDto.from(board, commentList));//대댓글 빠지면서 뭔가 오류가 납니다...!
+            responseDtoList.add(BoardResponseDto.from(board, commentResponseDtoList));//대댓글 빠지면서 뭔가 오류가 납니다...!
         }
 
         return ResponseUtils.ok(responseDtoList);
@@ -100,14 +105,15 @@ public class BoardService {
     @Transactional(readOnly = true)
     public ApiResponseDto<BoardResponseDto> getPost(Long id) {
         // Id에 해당하는 게시글이 있는지 확인
-        Board board = boardRepository.findById(id).orElse(null);
-        if (board==null) { // 해당 게시글이 없다면
-            throw new RestApiException(ErrorType.NOT_FOUND_WRITING);
-        }
+        Board board = boardRepository.findById(id).orElseThrow(() -> new RestApiException(ErrorType.NOT_FOUND_WRITING)); // 예외처리하도록 수정
+
         //김민형 수정
         List<Comment> commentList = commentRepository.findByBoard(board);
             commentList.sort(Comparator.comparing(Comment::getModifiedAt)
                             .reversed());
+        List<CommentResponseDto> commentResponseDtoList = commentList.stream()
+                .map(CommentResponseDto::from)
+                .collect(Collectors.toList());
         
         //기존--근데 조회하는데 대댓글 왜 제외해야하죠...?
         // 댓글리스트 작성일자 기준 내림차순 정렬
@@ -125,7 +131,7 @@ public class BoardService {
         // }
 
         // board 를 responseDto 로 변환 후, ResponseEntity body 에 dto 담아 리턴
-        return ResponseUtils.ok(BoardResponseDto.from(board.get(), commentList));
+        return ResponseUtils.ok(BoardResponseDto.from(board, commentResponseDtoList));
     }
 
     // 선택된 게시글 수정
@@ -138,8 +144,7 @@ public class BoardService {
             throw new RestApiException(ErrorType.NOT_FOUND_WRITING);
         }
         User user = userRepository.findByEmail(email).orElse(null);//작성자
-        Long meetingId = board.getMeeting().getId();
-        Meeting meeting = meetingRepository.findById(board.getMeeting().getId());//해당 미팅
+        Meeting meeting = meetingRepository.findById(board.getMeeting().getId()).orElseThrow(() -> new RestApiException(ErrorType.NOT_FOUND_WRITING));//해당 미팅
 
         //작성자==주최자
         if(user.getId() != meeting.getUser().getId()){

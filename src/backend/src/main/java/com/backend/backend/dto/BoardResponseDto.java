@@ -5,14 +5,15 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class BoardResponseDto {
     private Long id;
     private String title;
     private String contents;
-    private String username;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private List<CommentResponseDto> commentList;
@@ -22,7 +23,6 @@ public class BoardResponseDto {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.contents = entity.getContents();
-        this.username = entity.getUser().getUsername();
         this.createdAt = entity.getCreatedAt();
         this.modifiedAt = entity.getModifiedAt();
         this.commentList = list;
@@ -32,10 +32,11 @@ public class BoardResponseDto {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.contents = entity.getContents();
-        this.username = entity.getUser().getUsername();
         this.createdAt = entity.getCreatedAt();
         this.modifiedAt = entity.getModifiedAt();
-        this.commentList = entity.getCommentList().stream().map(CommentResponseDto::from).toList();
+        this.commentList = entity.getCommentList() != null
+                ? entity.getCommentList().stream().map(CommentResponseDto::from).collect(Collectors.toList())
+                : new ArrayList<>();
     }
 
     public static BoardResponseDto from(Board entity, List<CommentResponseDto> list) {

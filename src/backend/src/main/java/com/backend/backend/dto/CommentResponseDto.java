@@ -6,30 +6,34 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class CommentResponseDto {
-    private Long id;
-    private String contents;
-    private String username;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
-    private List<CommentResponseDto> childCommentList;
+    private final Long id;
+    private final String contents;
+    private final LocalDateTime createdAt;
+    private final LocalDateTime modifiedAt;
+    private final List<CommentResponseDto> childCommentList;
 
     @Builder
-    private CommentResponseDto(Comment entity) {
-        this.id = entity.getId();
-        this.contents = entity.getContents();
-        this.username = entity.getUser().getUsername();
-        this.createdAt = entity.getCreatedAt();
-        this.modifiedAt = entity.getModifiedAt();
-        this.childCommentList = entity.getChildCommentList().stream().map(CommentResponseDto::from).toList();
+    public CommentResponseDto(Long id, String contents, String username, LocalDateTime createdAt, LocalDateTime modifiedAt, List<CommentResponseDto> childCommentList) {
+        this.id = id;
+        this.contents = contents;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
+        this.childCommentList = childCommentList;
     }
 
-    public static CommentResponseDto from(Comment entity) {
+    public static CommentResponseDto from(Comment comment) {
         return CommentResponseDto.builder()
-                .entity(entity)
+                .id(comment.getId())
+                .contents(comment.getContents())
+                .createdAt(comment.getCreatedAt())
+                .modifiedAt(comment.getModifiedAt())
+                .childCommentList(comment.getChildCommentList() != null
+                        ? comment.getChildCommentList().stream().map(CommentResponseDto::from).collect(Collectors.toList())
+                        : null)
                 .build();
     }
-
 }

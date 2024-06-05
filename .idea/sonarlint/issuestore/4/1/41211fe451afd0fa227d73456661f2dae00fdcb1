@@ -1,0 +1,15 @@
+
+^
+java:S4973["<Strings and Boxed types should be compared using "equals()".(¿ÏêÆüÿÿÿÿ8š—÷¥ş1
+_
+java:S4973–"<Strings and Boxed types should be compared using "equals()".(¿ÏêÆüÿÿÿÿ8›—÷¥ş1
+_
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8¡—÷¥ş1
+_
+java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄŞ8¢—÷¥ş1
+_
+java:S6813'"BRemove this field injection and use constructor injection instead.(êæÄŞ8¤—÷¥ş1
+]	java:S125A"<This block of commented-out lines of code should be removed.(·ïè€ûÿÿÿÿ8¬Èİ¥ş1
+]	java:S125D"<This block of commented-out lines of code should be removed.(Ü¤¯Öüÿÿÿÿ8±Èİ¥ş1
+]	java:S125{"<This block of commented-out lines of code should be removed.(·ïè€ûÿÿÿÿ8ÂÈİ¥ş1
+]	java:S125~"<This block of commented-out lines of code should be removed.(Ü¤¯Öüÿÿÿÿ8ÂÈİ¥ş1

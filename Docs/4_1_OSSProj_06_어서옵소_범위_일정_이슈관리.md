@@ -23,4 +23,6 @@ https://flint-polish-c51.notion.site/cc2f9c7637e24dadb42de848e0ef7f7e?v=f123503a
 | 6                                                                | 모임 출석 관리 | 참여자들의 출석 통계 확인 기능                                                                  |
 | 7 <td rowspan="3">참여자</td> <td> 모임 소개 페이지 </td>        | 모임가입       | 새로운 모임 가입 기능                                                                           |
 | 8 <td rowspan="2">모임 상세 페이지(참여자)</td>                  | 출석 인증      | 카메라로 QR코드를 스캔하여 출석 인증 기능                                                       |
-| 9                                                                | 모임 출석 기록 | 날짜별 모임 출석 기록 확인 기능     
+| 9                                                                | 모임 출석 기록 | 날짜별 모임 출석 기록 확인 기능  
+# 일정 관리 중간이후   
+https://github.com/orgs/CSID-DGU/projects/24

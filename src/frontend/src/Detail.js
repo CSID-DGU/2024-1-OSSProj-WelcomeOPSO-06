@@ -212,12 +212,7 @@ const BoardDetail = () => {
             </div>
         </div>
         <button className="attendanceButton">
-          <Link
-            to={{
-              pathname: `/attendance:${boardId}`,
-              state: { meetingId: boardId },
-            }}
-          >
+          <Link to={`/attendance/${boardId}`} state={{ boardId }}>
             참여자 출석 조회
           </Link>
         </button>

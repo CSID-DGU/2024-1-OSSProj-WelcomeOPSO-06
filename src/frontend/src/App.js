@@ -7,6 +7,8 @@ import Main from "./Main";
 import Detail from "./Detail";
 import Notice from "./Notice";
 import Manage from "./Manage";
+import QRScanner from "./QRScanner";
+import CreateMeeting from "./CreateMeeting";
 import "./css/App.css";
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Route path="/board/:id" element={<Detail />} />
           <Route path="/notice" element={<Notice />} />
           <Route path="/manage" element={<Manage />} />
+          <Route path="/qrscanner" element={<QRScanner />} />
+          <Route path="/create-meeting" element={<CreateMeeting />} />
         </Routes>
       </div>
     </Router>

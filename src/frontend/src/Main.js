@@ -3,6 +3,7 @@ import Nav1 from "./Nav123";
 import Top from "./Top";
 import BoardItem from "./BoardItem";
 import { Link } from "react-router-dom";
+
 import "./css/Main.css";
 
 const Main = () => {
@@ -18,19 +19,7 @@ const Main = () => {
       <Top></Top>
       <div className="board">
         <h2>게시판</h2>
-        <Link
-          to={{
-            pathname: "/board/1",
-            state: {
-              id: 1,
-              title: "첫 번째 게시글",
-              content: "이것은 첫 번째 게시글의 내용입니다.",
-              time: getTimeDiff("2024-05-12T10:00:00"),
-              views: 100,
-              comments: 5,
-            },
-          }}
-        ></Link>
+
         <div className="board-item">
           <BoardItem
             id={1}

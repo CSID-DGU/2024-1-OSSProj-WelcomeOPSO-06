@@ -43,6 +43,30 @@ const BoardDetail = () => {
     attendanceTime: isoAttendanceTime,
     lateTime: isoLateTime,
   };
+  const [seconds, setSeconds] = useState(15);
+  const [isRunning, setIsRunning] = useState(false); // 타이머가 실행 중인지 여부를 나타내는 상태
+
+  useEffect(() => {
+    let intervalId;
+    if (isRunning) {
+      intervalId = setInterval(() => {
+        setSeconds(prevSeconds => {
+          let newSeconds = prevSeconds - 1;
+          if (newSeconds < 0) {
+            newSeconds = 15;
+          }
+          return newSeconds;
+        });
+      }, 1000);
+    }
+
+    // Clean up the interval on unmount or when the timer stops
+    return () => clearInterval(intervalId);
+  }, [isRunning]); // isRunning이 변경될 때마다 useEffect가 실행됩니다.
+
+  const startTimer = () => {
+    setIsRunning(true); // 타이머 시작
+  };
   const handleShowQR = async () => {
     setShowQR(true);
     try {
@@ -69,8 +93,9 @@ const BoardDetail = () => {
       console.error("요청을 보내는 중 에러가 발생했습니다:", error);
     }
   };
+  
   const handleCreateQR = async () => {
-    
+    startTimer();
     try {
       const createQR = async () => {
         const response = await fetch(`/api/meetings/${boardId}/qr-code`, {
@@ -81,6 +106,7 @@ const BoardDetail = () => {
           body: JSON.stringify(abc),
         });
         if (!response.ok) {
+          startTimer();
           throw new Error("Network response was not ok");
         }
         // 이미지 데이터를 받아오기
@@ -199,8 +225,9 @@ const BoardDetail = () => {
             </div>
             <button onClick={handleCreateQR}>생성하기</button>
             
-              <img src={qrImage} alt="QR Code" />
             
+              <img src={qrImage} alt="QR Code" />
+            <p>{seconds}초 남았습니다.</p>
           </div>
         )}
         <div>

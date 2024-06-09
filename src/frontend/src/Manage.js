@@ -14,27 +14,19 @@ const Manage = () => {
   // 미팅정보 가져오기
   const [meeting, setMeeting] = useState([
     {
-      id: 1,
-      meetingName: "첫번째 모임",
-      userEmail: "11@11",
+      id: "",
+      meetingName: "주최중인 모임이 없습니다.",
+      userEmail: "",
     },
-    {
-      id: 2,
-      meetingName: "첫번째 모임",
-      userEmail: "11@11",
-    },
+    
   ]);
   const [meeting2, setMeeting2] = useState([
     {
-      id: 3,
-      meetingName: "첫번째 참여 모임",
-      userEmail: "11@11",
+      id: "",
+      meetingName: "참여중인 모임이 없습니다.",
+      userEmail: "",
     },
-    {
-      id: 4,
-      meetingName: "두번째 참여 모임",
-      userEmail: "11@11",
-    },
+    
   ]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -124,8 +116,8 @@ const Manage = () => {
               key={index}
             >
               <div className="groupname">
-                <p>모임 이름: {meeting2.meetingName}</p>
-                <p>이메일: {meeting2.userEmail}</p>
+                <p>{meeting2.meetingName}</p>
+                <p>{meeting2.userEmail}</p>
               </div>
             </Link>
           ))}
@@ -135,8 +127,8 @@ const Manage = () => {
           {meeting.map((meeting, index) => (
             <Link to={`/my-joined-meetings/${meeting.id}`} key={index}>
               <div className="groupname">
-                <p>모임 이름: {meeting.meetingName}</p>
-                <p>이메일: {meeting.userEmail}</p>
+                <p>{meeting.meetingName}</p>
+                <p> {meeting.userEmail}</p>
               </div>
             </Link>
           ))}

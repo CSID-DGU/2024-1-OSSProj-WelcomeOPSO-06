@@ -39,7 +39,7 @@ const Manage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:8080/meetings/participant")
+    fetch("/api/meetings/organizer")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -47,6 +47,7 @@ const Manage = () => {
         return response.json();
       })
       .then((data) => {
+        console.log(data);
         setMeeting2(data);
         setLoading(false);
       })
@@ -57,7 +58,7 @@ const Manage = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8080/meetings/organizer")
+    fetch("/api/meetings/partcipant")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -78,47 +79,9 @@ const Manage = () => {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return (
-      <div>
-        <Top />
-        <div className="manage-container">
-          <div className="manage-header">
-            <h2>내가 만든 모임</h2>
-            <button className="make-button" onClick={() => setShowModal(true)}>
-              모임 만들기
-            </button>
-          </div>
-          <div>
-            {meeting.map((meeting, index) => (
-              <Link to={`/board/${meeting.id}`} key={index}>
-                <div className="groupname">
-                  <p>모임 이름: {meeting.meetingName}</p>
-                  <p>이메일: {meeting.userEmail}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <h2>내가 참여 중인 모임</h2>
-          <div>
-            {meeting2.map((meeting2, index) => (
-              <Link to={`/board/${meeting2.id}`} key={index}>
-                <div className="groupname">
-                  <p>모임 이름: {meeting2.meetingName}</p>
-                  <p>이메일: {meeting2.userEmail}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-        <Nav1 />
-      </div>
-    );
-  }
-
   const handleCreateGroup = async () => {
     try {
-      const response = await fetch("http://localhost:8080/meetings", {
+      const response = await fetch("/meetings", {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -146,27 +109,34 @@ const Manage = () => {
       <div className="manage-container">
         <div className="manage-header">
           <h2>내가 만든 모임</h2>
-          <button className="make-button" onClick={() => setShowModal(true)}>
-            모임 만들기
-          </button>
+
+          <Link to="/create-meeting">
+            <button className="make-button">모임만들기</button>
+          </Link>
         </div>
-        <div>
-          {meeting.map((meeting, index) => (
-            <Link to={`/board/${meeting.id}`} key={index}>
+        <div style={{ height: "300px", overflow: "auto" }}>
+          {meeting2.map((meeting2, index) => (
+            <Link
+              to={{
+                pathname: `/my-created-meetings/${meeting2.id}`,
+                state: meeting2,
+              }}
+              key={index}
+            >
               <div className="groupname">
-                <p>모임 이름: {meeting.meetingName}</p>
-                <p>이메일: {meeting.userEmail}</p>
+                <p>모임 이름: {meeting2.meetingName}</p>
+                <p>이메일: {meeting2.userEmail}</p>
               </div>
             </Link>
           ))}
         </div>
         <h2>내가 참여 중인 모임</h2>
-        <div>
-          {meeting2.map((meeting2, index) => (
-            <Link to={`/board/${meeting2.id}`} key={index}>
+        <div style={{ height: "200px", overflow: "auto" }}>
+          {meeting.map((meeting, index) => (
+            <Link to={`/my-joined-meetings/${meeting.id}`} key={index}>
               <div className="groupname">
-                <p>모임 이름: {meeting2.meetingName}</p>
-                <p>이메일: {meeting2.userEmail}</p>
+                <p>모임 이름: {meeting.meetingName}</p>
+                <p>이메일: {meeting.userEmail}</p>
               </div>
             </Link>
           ))}

@@ -68,7 +68,7 @@ public class QRcodeService {
             throw new IllegalStateException("출석 시간이 만료되어 큐알코드를 생성할 수 없습니다.");
         }
         // 만료 시간 설정: QR 코드 생성 후 15초 후
-        LocalDateTime expirationTime = LocalDateTime.now().plusSeconds(15);
+        LocalDateTime expirationTime = LocalDateTime.now().plusSeconds(600);
         // QR 코드 생성
         
         // QR 코드 생성에 사용할 텍스트 생성

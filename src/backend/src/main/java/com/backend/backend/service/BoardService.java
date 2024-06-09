@@ -1,5 +1,14 @@
 package com.backend.backend.service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.backend.backend.common.ApiResponseDto;
 import com.backend.backend.common.ResponseUtils;
 import com.backend.backend.dto.BoardRequestsDto;
@@ -15,15 +24,8 @@ import com.backend.backend.repository.BoardRepository;
 import com.backend.backend.repository.CommentRepository;
 import com.backend.backend.repository.MeetingRepository;
 import com.backend.backend.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

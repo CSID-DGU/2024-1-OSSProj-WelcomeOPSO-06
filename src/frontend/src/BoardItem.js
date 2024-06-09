@@ -18,7 +18,7 @@ const BoardItem = ({ id, title, content, time, views, comments, timeDiff }) => {
     <div className="board-item">
       <Link
         to={{
-          pathname: `/board/${id}`,
+          pathname: `/post/${id}`,
           state: { id, title, content, time, views, comments, timeDiff },
         }}
       >

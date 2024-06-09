@@ -3,7 +3,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const BoardItem = ({ id, title, content, time, views, comments, timeDiff }) => {
+const BoardItem = ({ id, title, content, time, meeting , timeDiff }) => {
   const getTimeText = () => {
     if (timeDiff < 1) {
       return "방금 전";
@@ -16,19 +16,12 @@ const BoardItem = ({ id, title, content, time, views, comments, timeDiff }) => {
 
   return (
     <div className="board-item">
-      <Link
-        to={{
-          pathname: `/post/${id}`,
-          state: { id, title, content, time, views, comments, timeDiff },
-        }}
-      >
+      <Link to={`/post/${id}`} state={{ id, title, content, meeting }}>
         <div className="board-it">
           <h2>{title}</h2>
-          <p>{content}</p>
           <div className="metadata">
-            <span>작성 시간: {getTimeText()}</span>
-            <span>조회수: {views}</span>
-            <span>댓글 수: {comments}</span>
+            <p>{content}</p>
+            <p>{time}시간 전</p>
           </div>
         </div>
       </Link>

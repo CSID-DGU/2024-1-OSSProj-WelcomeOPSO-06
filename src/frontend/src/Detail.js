@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Nav1 from "./Nav123";
 import Top from "./Top";
 import "./css/Detail.css";
@@ -45,7 +45,15 @@ const BoardDetail = () => {
   };
   const [seconds, setSeconds] = useState(15);
   const [isRunning, setIsRunning] = useState(false); // 타이머가 실행 중인지 여부를 나타내는 상태
-
+  const [participants, setParticipants] = useState([]);
+  useEffect(() => {
+    if (boardId) {
+      fetch(`/api/meetings/${boardId}/participants`)
+        .then((response) => response.json())
+        .then((data) => setParticipants(data))
+        .catch((error) => console.error("Error fetching participants:", error));
+    }
+  }, [boardId]);
   useEffect(() => {
     let intervalId;
     if (isRunning) {
@@ -191,11 +199,28 @@ const BoardDetail = () => {
         
         <div>
           <h2>참여자 목록</h2>
-          <p style={{ fontSize: "18px", color: "gray" }}>
-            참여자 목록이 없습니다.
-          </p>
+          <div className="detail_detail">
+              {participants.length > 0 ? (
+                participants.map((participant, index) => (
+                  <div key={index}>
+                    참여자 이메일: {participant.participantEmail}
+                  </div>
+                ))
+              ) : (
+                <div>참여자가 없습니다.</div>
+              )}
+            </div>
         </div>
-
+        <button className="attendanceButton">
+          <Link
+            to={{
+              pathname: `/attendance:${boardId}`,
+              state: { meetingId: boardId },
+            }}
+          >
+            참여자 출석 조회
+          </Link>
+        </button>
         <button className="Qrbutton" onClick={handleShowQR}>
           출석 진행
         </button>
@@ -226,7 +251,7 @@ const BoardDetail = () => {
             <button onClick={handleCreateQR}>생성하기</button>
             
             
-              <img src={qrImage} alt="QR Code" />
+              <img src={qrImage} alt="" />
             <p>{seconds}초 남았습니다.</p>
           </div>
         )}

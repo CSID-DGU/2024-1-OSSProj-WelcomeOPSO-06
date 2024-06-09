@@ -1,23 +1,24 @@
 // App.js
-
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import Main from "./Main";
-import Detail from "./Detail";
-import Notice from "./Notice";
-import Manage from "./Manage";
-import QRScanner from "./QRScanner";
-import JoinDetail from "./Join-detail";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import CreateMeeting from "./CreateMeeting";
-import Post from "./post";
+import Detail from "./Detail";
+import Home from "./Home";
+import JoinDetail from "./Join-detail";
+import Main from "./Main";
+import Manage from "./Manage";
+import Notice from "./Notice";
+import QRScanner from "./QRScanner";
+import Attendance from "./attendance";
 import "./css/App.css";
+import Post from "./post";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
+          <Route path="/attendance/:boardId" element={<Attendance />} />
           <Route path="/" element={<Home />} />
           <Route path="/main" element={<Main />} />
           <Route path="/my-created-meetings/:id" element={<Detail />} />

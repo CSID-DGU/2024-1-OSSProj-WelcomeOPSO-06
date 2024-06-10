@@ -7,6 +7,7 @@ import Home from "./Home";
 import JoinDetail from "./Join-detail";
 import Main from "./Main";
 import Manage from "./Manage";
+import Mypage from "./Mypage";
 import Notice from "./Notice";
 import QRScanner from "./QRScanner";
 import Attendance from "./attendance";
@@ -25,6 +26,7 @@ function App() {
           <Route path="/my-joined-meetings/:id" element={<JoinDetail />} />
           <Route path="/notice" element={<Notice />} />
           <Route path="/manage" element={<Manage />} />
+          <Route path="/logout" element={<Mypage />} />
           <Route path="/qrscanner" element={<QRScanner />} />
           <Route path="/create-meeting" element={<CreateMeeting />} />
           <Route path="/post/:id" element={<Post />} />

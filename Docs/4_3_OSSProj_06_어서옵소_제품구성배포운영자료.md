@@ -42,6 +42,7 @@
 - Swagger는 백엔드의 API를 테스트 해볼 수 있는 오픈 소스 소프트웨어 프레임워크로, 본 프로젝트 소스코드에 포함되어 있어 프론트에서 구현되지 않은 기능도 테스트 해볼 수 있다.
 - 백엔드 서버를 실행 후, 회원가입, 로그인을 진행하여 개발자 도구에서 네트워크 란에 request header에서 세션 쿠키를 복사한다.
   ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/a89e3f68-a19c-4edb-ad6d-ad2a4a5bb9c8)
+
   
 -  http://localhost:8080/swagger-ui/index.html로 접속하고 오른쪽 자물쇠 버튼을 눌러 세션 쿠키를 붙여 넣으면 해당 사용자 정보로 api를 이용할 수 있다.
   ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/d2a0d4e0-ef61-476e-8794-a371703375da)

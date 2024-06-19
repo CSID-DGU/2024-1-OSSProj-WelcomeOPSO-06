@@ -18,10 +18,10 @@
 
   ※ 자세한 구성도 보기 -> [바로가기 링크](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/blob/mmm/src/overview.md)
 
-### 사용 및 참고 오픈소스
+### 사용 오픈소스
 - Zxing: QR 코드 생성 오픈소스 -> https://github.com/zxing/zxing
-- QR생성 오픈소스 참고 -> [해당 블로그 바로가기](https://velog.io/@adorableco/%EC%9B%B9-%EA%B0%9C%EB%B0%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-8.-%EC%8A%A4%ED%94%84%EB%A7%81-Spring-QR-%EC%BD%94%EB%93%9C%EB%A1%9C-%EC%B6%9C%EC%84%9D-%EC%B2%B4%ED%81%AC-%EA%B8%B0%EB%8A%A5)
 - 회원가입, 로그인, 로그아웃 ->  ['스프링 부트3 백엔드 개발자 되기' 교재 소스코드](https://github.com/shinsunyoung/springboot-developer)
+- 게시판 및 댓글 -> [깃허브 바로가기](https://github.com/dev-dykim/Spring-project-board)
   
 ## 2. 프로젝트 제품 환경구성 및 이용 방법  
 ### 프론트엔드
@@ -41,7 +41,12 @@
 
 ### 백엔드
 
-
+#### 데이터 베이스 변경
+- 본인의 데이터 베이스로 변경해야 사용가능하다.
+- 변경방법
+  - src\backend\src\main\resources\application.properties 파일에서 아래 사진 부분의 url을 본인 데이터베이스 경로로 수정하고, 계정명과 비밀번호를 변경한다.
+  ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/e577d725-fde8-4240-91a6-d6f7420bf831)
+ 
 ### Swagger 사용법
 - Swagger는 백엔드의 API를 테스트 해볼 수 있는 오픈 소스 소프트웨어 프레임워크로, 본 프로젝트 소스코드에 포함되어 있어 프론트에서 구현되지 않은 기능도 테스트 해볼 수 있다.
 - Swagger 기능 제거 방법

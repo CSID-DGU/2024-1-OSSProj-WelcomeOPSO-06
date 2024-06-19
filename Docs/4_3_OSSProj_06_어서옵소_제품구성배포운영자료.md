@@ -25,20 +25,6 @@
 - 게시판 및 댓글 -> [깃허브 바로가기](https://github.com/dev-dykim/Spring-project-board)
   
 ## 2. 프로젝트 제품 환경구성 및 이용 방법  
-### 프론트엔드
-
-#### 1. [Node.js 설치]
-  ##### Node.js 공식 홈페이지 접속 https://nodejs.org/en
-  LTS와 Current 버전 중 원하는 버전을 선택하여 설치한다.
-  - LTS : 기업을 위해 3년간 지원하는 버전이다. 짝수 버전만 LTS 버전이 될 수 있다. 서버를 안정적으로 운영해야 할 경우 선택한다. 하지만 최신 기능을 사용하지 못할 수 있다.
-  - Current : 최신 기능을 담고 있는 버전이다. 실험적인 기능이 들어 있어 예기치 못한 에러가 발생할 수 있다. 서버에 신기능이 필요하거나 학습용으로 사용할 때 적합하다. 단, 짝수 버전은 나중에 LTS가 되므로 Current일 때부터 사용하는 것을 고려해볼 만하다.
-
-##### 밑 명령어를 통해 올바르게 설치되었는지 확인
-  - node -v
-  - npm -v
-1. cd Src -> cd frontend -> cd src
-2. `npm install`
-3. `npm start`
 
 ### 백엔드
 #### 1. Java 설치 (JDK)
@@ -52,7 +38,23 @@
 
 #### 3. 애플리케이션 실행
 - src\backend\src\main\java\com\backend\backend\BackendApplication.java 파일을 실행하여 스프링 부트 애플리케이션을 시작한다.
-- 이후 src/frontend/src에서 npm start 명령어로 웹 앱을 로컬 시스템에서 실행할 수 있다.
+  
+### 프론트엔드
+
+#### 1. [Node.js 설치]
+  ##### Node.js 공식 홈페이지 접속 https://nodejs.org/en
+  LTS와 Current 버전 중 원하는 버전을 선택하여 설치한다.
+  - LTS : 기업을 위해 3년간 지원하는 버전이다. 짝수 버전만 LTS 버전이 될 수 있다. 서버를 안정적으로 운영해야 할 경우 선택한다. 하지만 최신 기능을 사용하지 못할 수 있다.
+  - Current : 최신 기능을 담고 있는 버전이다. 실험적인 기능이 들어 있어 예기치 못한 에러가 발생할 수 있다. 서버에 신기능이 필요하거나 학습용으로 사용할 때 적합하다. 단, 짝수 버전은 나중에 LTS가 되므로 Current일 때부터 사용하는 것을 고려해볼 만하다.
+
+##### 밑 명령어를 통해 올바르게 설치되었는지 확인
+  - node -v
+  - npm -v
+
+##### 아래 명령어를 통해 웹앱 실행
+1. cd src -> cd frontend -> cd src
+2. `npm install`
+3. `npm start`
 
 ### Swagger 사용법
 - Swagger는 백엔드의 API를 테스트 해볼 수 있는 오픈 소스 소프트웨어 프레임워크로, 본 프로젝트 소스코드에 포함되어 있어 프론트에서 구현되지 않은 기능도 테스트 해볼 수 있다.

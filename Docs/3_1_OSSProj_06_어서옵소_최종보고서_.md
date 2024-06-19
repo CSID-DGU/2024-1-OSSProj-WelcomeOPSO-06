@@ -289,73 +289,121 @@
 - QR 출석 시스템 구현
 
   - 최초 화면
+    
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/c7709e10-84bd-4742-bc9e-b176bbb92496)
+    
     - 처음 웹을 방문했을 때, 시작하기 버튼을 누르면 로그인 화면으로 이동한다.
+      
   - 로그인 화면
+    
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/424c1329-faac-49a3-a54c-74bacfb8afb4)
+    
     - 로그인 화면에서 로그인을 하거나 회원가입 버튼을 눌러 회원가입을 진행한다.
+      
   - 회원가입 화면
+    
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/92a23783-52cb-447d-a99d-60fb6d6f01a2)
+    
     - 회원가입시 아이디로 이메일을 입력하고, 비밀번호를 입력하면 가입이 완료된다.
     - 이메일 양식을 지키지 않을 시 가입되지 않는다.
+      
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/070a0089-c885-4100-a196-6df61cf310fe)
+    
     - 데이터베이스에 비밀번호는 암호화되어 저장된다.
+      
   - 메인화면
-    ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/e136e5a7-bca7-4420-80e2-7d792d748b33) 
+    
+    ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/e136e5a7-bca7-4420-80e2-7d792d748b33)
+    
     - 모임모집 게시글 목록이 나온다.
     - 해당 게시글을 클릭하면 모임을 가입할 수있는 모임 상세페이지로 이동한다. (아래 모임 가입 화면 참고)
+      
   - 모임관리 화면
+    
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/96521555-6c40-4cee-9292-eba35da8d5f1)
+    
     - 내가 주최 중인 모임 목록과 참여 중인 모임 목록을 확인할 수 있다.
     - 각각의 모임을 클릭하면 해당 모임의 페이지로 이동한다. (아래의 주최자/참여자 페이지 참고)
     - 아래 이메일은 주최자의 아이디이다.
     - 참여중이거나 주최중인 모임이 없는 경우, 없다고 나온다.
     - 오른쪽 위의 '모임만들기'버튼을 통해 모임을 생성할 수 있다.
+      
   - 모임만들기 화면
+    
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/edfd62ad-3930-44e5-aeea-16df3a27336d)
+    
     - 모임의 이름을 입력하면 로그인한 아이디로 모임이 주최된다.
+      
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/f316e246-df78-47f0-893e-513690b5ff40)
+    
     - 모임생성하기 버튼을 누르면 모임 생성이 완료되었다는 메세지가 나온다.
     - 같은 이름의 모임은 생성할 수 없다.
+      
   - 모임가입하기 화면(모임상세페이지)
+    
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/6b92c85a-35d2-4d60-a388-a69a862b2ef6)
+    
     - 주최자가 적어놓은 모임의 설명을 볼 수 있다.
     - 모임의 참여자 목록을 확인할 수 있다.
     - 모임상세페이지에서 가입하기 버튼을 누르면 모임에 가입이 가능하다.
+      
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/eb2697ff-edf7-4d05-9185-74ca4b3687bd)
+    
     - 모임 가입에 성공하면 해당 메세지가 출력된다.
     - 모임 주최자는 모임에 가입할 수 없다.
     - 이미 가입된 가입자는 모임에 가입할 수 없다.
+      
   - 모임 주최자 페이지(큐알생성)
     
 
-    ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/7061ec1f-5dea-449e-89eb-51c115c6e1b3)
+    ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/3f2977c6-b820-4e37-8f68-43e90c0118e1)
 
     - 내가 주최하고 있는 모임 목록을 클릭하면 접속되는 페이지다.
     - 참여자 목록을 확인가능하다.
     - 출석진행을 클릭하면 그날의 출석을 시작할 수 있다.
-    !![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/f5d501cf-563a-45e8-a1b6-fd526314dd26)
-
+      
+    ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/077bc765-a9bc-43cd-b83a-02debdcef618)
+    
     - 출석진행 버튼을 누르면 출석시간과 지각시간을 입력할 수 있는 칸이 생성된다.
     - 원하는 출석 시간을 입력하고 생성하기 버튼을 누르면 큐알코드가 생성된다.
-    ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/f3929d92-2ebf-43be-bd94-116602b7c4de)
+      
+    ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/b85ac1b4-e56a-4f2b-8e4a-cf9a96d160a2)
 
     - 큐알코드는 15초마다 재생성되고, 이전의 큐알코드는 출석이 되지 않는다.
     - 아래의 타이머가 재생성시간을 알려준다.
+      
+    ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/b16b2758-ac33-44db-991d-d2b2879bdc79)
+ 
+    - 출석목록 조회 버튼을 통해 참여자의 출석 현황을 볼 수 있다.
+      
   - 모임참여자 페이지(큐알 스캔)
+    
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/203b8eea-6c2f-412f-866b-54a7d0603e5f)
+    
     - 참여하고 있는 모임목록의 이름을 클릭하면 나오는 페이지다.
-    - 큐알스캔하기를 누르면 카메라와 연동된다
+    - 큐알스캔하기를 누르면 카메라와 연동된다.
+      
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/8b11ef01-678f-4b72-8884-bfc5d2d93b0f)
+    
     - 카메라와 연동된 페이지다.
+      
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/5c229d74-9a81-4370-a61d-8d939583a465)
+    
     - 큐알을 인식하면 아래에 큐알의 정보가 출력되고 전송버튼을 누르면 출석처리가 완료된다.
+      
+    ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/3c974e7b-752b-4495-80c0-218073ecf31f)
+    
     - 만료시간이 지나면 해당 큐알로 출석이 되지 않는다.
+      
     ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/9a97e735-fb30-483b-a956-47cf831d7b85)
+    
     - 출석이 기록되면 해당 메세지가 출력된다.
     - 이미 출석된 참여자는 출석되지 않는다.
     - 참여자가 아닌 사용자가 큐알을 스캔해도 출석되지 않는다.
-  
+      
+    ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/9431682e-4684-486f-89c7-325f34b93e31)
+    
+    - 본인의 해당 모임에 대한 출석을 확인할 수 있다.
   
 
 - DB 구성

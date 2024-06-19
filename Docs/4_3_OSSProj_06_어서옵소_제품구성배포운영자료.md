@@ -51,6 +51,7 @@
 
 #### 3. 애플리케이션 실행
 - src\backend\src\main\java\com\backend\backend\BackendApplication.java 파일을 실행하여 스프링 부트 애플리케이션을 시작한다.
+- 이후 src/frontend/src에서 npm start 명령어로 웹 앱을 로컬 시스템에서 실행할 수 있다.
 
 ### Swagger 사용법
 - Swagger는 백엔드의 API를 테스트 해볼 수 있는 오픈 소스 소프트웨어 프레임워크로, 본 프로젝트 소스코드에 포함되어 있어 프론트에서 구현되지 않은 기능도 테스트 해볼 수 있다.

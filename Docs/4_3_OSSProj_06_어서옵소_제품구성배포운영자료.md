@@ -4,7 +4,12 @@
 
 ## 1. 프로젝트 제품 구성
 
-- *프로젝트 제품의 구성과 배치 내역을 그림과 글로 설명*  
+- QR 출석 시스템 작동 방식 요약
+  - 자세한 사항은 최종보고서 구현내용 확인 -> [바로가기 링크](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/blob/mmm/Docs/3_1_OSSProj_06_%EC%96%B4%EC%84%9C%EC%98%B5%EC%86%8C_%EC%B5%9C%EC%A2%85%EB%B3%B4%EA%B3%A0%EC%84%9C_.md#5-%EA%B0%9C%EB%B0%9C-%EA%B3%BC%EC%A0%95)
+  - 작동 영상 -> [바로가기 링크](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/blob/mmm/Docs/%EC%8B%9C%EC%97%B0%EB%8F%99%EC%98%81%EC%83%81.mp4)
+
+
+
   
 ## 2. 프로젝트 제품 배포 방법  
 

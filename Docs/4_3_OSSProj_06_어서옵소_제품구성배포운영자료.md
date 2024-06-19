@@ -4,7 +4,6 @@
 
 ## 1. 프로젝트 제품 구성
 
- 
 
 - 구현 기능
   1. 회원가입/로그인/로그아웃
@@ -43,4 +42,17 @@
 ## 3. 프로젝트 제품 운영 방법  
 
 - *프로젝트 제품의 시연을 위한 환경구성 및 운영방법 설명*
-- *프로젝트 제품의 시연 시나리오 제시*  
+- *프로젝트 제품의 시연 시나리오 제시*
+  
+- 작동화면
+ 1. 기본기능(회원가입, 로그인, 로그아웃)
+ ![기본기능](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/fb35ac69-b2b0-473e-83e9-014e2a1cf1f4)
+ - 비회원은 회원가입 후에 이용가능
+3. 주최자 기능(모임생성, 출석 큐알 생성, 출석목록 조회)
+   ![주최자](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/11d29b79-3fd4-4830-b4ac-d143bf473dae)
+ - 모임을 생성하고 참여자가 있는 경우 큐알을 생성하여 해당 날짜에 대한 출석을 체크할 수 있고, 출석 목록을 조회할 수 있다. 
+4. 참여자 기능(게시글 조회, 모임가입, 출석 큐알 스캔, 본인 출석 정보조회) 
+  ![참여자](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/3a60a1e8-f2f6-4c89-a52e-374e88e5d3e4)
+ - 홈 페이지의 홍보게시글을 통해 해당 모임에 가입할 수 있고, 큐알을 스캔하여 출석을 인증할 수 있다. 이미 15초가 지난 큐알의 경우, 만료된 코드로 출석을 인증할 수 없다.
+※ 기능별 자세한 설명은 최종보고서 참고 -> [바로가기 링크](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/blob/mmm/Docs/3_1_OSSProj_06_%EC%96%B4%EC%84%9C%EC%98%B5%EC%86%8C_%EC%B5%9C%EC%A2%85%EB%B3%B4%EA%B3%A0%EC%84%9C_.md#5-%EA%B0%9C%EB%B0%9C-%EA%B3%BC%EC%A0%95)
+※ 출석인증 시연영상 바로가기 -> [바로가기 링크](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/blob/mmm/Docs/%EC%8B%9C%EC%97%B0%EB%8F%99%EC%98%81%EC%83%81.mp4)

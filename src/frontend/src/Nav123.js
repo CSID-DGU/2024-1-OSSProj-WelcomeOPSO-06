@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./css/Nav.css";
-import Notice from "./Notice.js";
 const Nav = () => {
   return (
     <nav className="bottom-nav">
@@ -16,7 +15,7 @@ const Nav = () => {
         <li>
           <Link to="/notice">공지사항</Link>
         </li>
-        <li>마이페이지</li>
+        <li><Link to="/logout">마이페이지</Link></li>
       </ul>
     </nav>
   );

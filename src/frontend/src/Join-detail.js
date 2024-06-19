@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Nav1 from "./Nav123";
 import Top from "./Top";
+import Attendancejoin from "./attendancejoin";
 import "./css/Detail.css";
-
 const BoardDetail = () => {
   const location = useLocation();
   const pathname = location.pathname;
@@ -23,9 +22,11 @@ const BoardDetail = () => {
   const qrTimeLimitMinutes = qrTimeLimit;
   const lateTimeLimitMinutes = lateTimeLimit;
   const attendanceTime = new Date(currentTime);
+  attendanceTime.setHours(attendanceTime.getHours() + 9);
   attendanceTime.setMinutes(attendanceTime.getMinutes() + qrTimeLimitMinutes);
   const isoAttendanceTime = attendanceTime.toISOString();
   const lateTime = new Date(attendanceTime);
+  lateTime.setHours(lateTime.getHours() + 9);
   lateTime.setMinutes(lateTime.getMinutes() + lateTimeLimitMinutes);
   const isoLateTime = lateTime.toISOString();
   const currentDate = new Date();
@@ -79,7 +80,7 @@ const BoardDetail = () => {
           const data = await response.json();
           console.log(data.response);
 
-          const details = data.response.find((item) => item.id === 4); //id -> meetingid로 바꿔야하고 boardId도 바꿔야함
+          const details = data.response.find((item) => item.meetingId === parseInt(boardId));//id -> meetingid로 바꿔야하고 boardId도 바꿔야함
           console.log(details);
           if (details) {
             console.log(details);
@@ -132,7 +133,8 @@ const BoardDetail = () => {
           <div className="detail_detail">
             <div>대한극장 | 서울 중구 퇴계로 212</div>
           </div>
-        </div>
+        </div>         
+        <Attendancejoin boardId={boardId}></Attendancejoin>
         <div>
           <h3>댓글</h3>
           {commentList.length === 0 ? (

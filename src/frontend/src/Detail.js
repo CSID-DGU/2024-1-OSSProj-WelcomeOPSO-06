@@ -22,11 +22,11 @@ const BoardDetail = () => {
   const qrTimeLimitMinutes = qrTimeLimit;
   const lateTimeLimitMinutes = lateTimeLimit;
   const attendanceTime = new Date(currentTime);
-  attendanceTime.setDate(attendanceTime.getDate() + 1);
+  attendanceTime.setHours(attendanceTime.getHours() + 9);
   attendanceTime.setMinutes(attendanceTime.getMinutes() + qrTimeLimitMinutes);
   const isoAttendanceTime = attendanceTime.toISOString();
   const lateTime = new Date(attendanceTime);
-  lateTime.setDate(lateTime.getDate() + 1);
+  lateTime.setHours(lateTime.getHours());
   lateTime.setMinutes(lateTime.getMinutes() + lateTimeLimitMinutes);
   const isoLateTime = lateTime.toISOString();
   const currentDate = new Date();
@@ -43,7 +43,7 @@ const BoardDetail = () => {
     attendanceTime: isoAttendanceTime,
     lateTime: isoLateTime,
   };
-  const [seconds, setSeconds] = useState(15);
+  const [seconds, setSeconds] = useState(16);
   const [isRunning, setIsRunning] = useState(false); // 타이머가 실행 중인지 여부를 나타내는 상태
   const [participants, setParticipants] = useState([]);
   useEffect(() => {
@@ -61,7 +61,7 @@ const BoardDetail = () => {
         setSeconds(prevSeconds => {
           let newSeconds = prevSeconds - 1;
           if (newSeconds < 0) {
-            newSeconds = 15;
+            newSeconds =16;
           }
           return newSeconds;
         });

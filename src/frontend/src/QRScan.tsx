@@ -95,10 +95,12 @@ const Reader = () => {
           alert("출석이 완료되었습니다.");
         } else {
           console.error("Failed to send text");
+          alert("만료된 코드입니다.");
         }
       })
       .catch((error) => {
         console.error("Error sending text:", error);
+        alert("만료된 코드입니다.");
       });
   };
 

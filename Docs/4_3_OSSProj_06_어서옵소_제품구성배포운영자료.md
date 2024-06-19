@@ -8,6 +8,17 @@
   - 자세한 사항은 최종보고서 구현내용 확인 -> [바로가기 링크](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/blob/mmm/Docs/3_1_OSSProj_06_%EC%96%B4%EC%84%9C%EC%98%B5%EC%86%8C_%EC%B5%9C%EC%A2%85%EB%B3%B4%EA%B3%A0%EC%84%9C_.md#5-%EA%B0%9C%EB%B0%9C-%EA%B3%BC%EC%A0%95)
   - 작동 영상 -> [바로가기 링크](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/blob/mmm/Docs/%EC%8B%9C%EC%97%B0%EB%8F%99%EC%98%81%EC%83%81.mp4)
 
+- 구현 기능
+  1. 회원가입/로그인/로그아웃
+  2. 모임생성
+  3. 홍보 게시글 목록(홈화면)
+  4. 주최모임 목록 확인
+  5. 참여모임 목록 확인
+  6. 주최자-큐알코드 생성
+  7. 참여자-큐알코드 스캔으로 출석 인증
+  8. 주최자-참여자 출석 목록 조회
+  9. 참여자-해당모임의 본인 출석 조회
+  ※ 백엔드에서 추가 개발된 기능은 API명세서 확인 -> [바로가기 링크](https://www.notion.so/API-9e8f00b6085e476bb837cbb3f8a85c44)
 
 
   

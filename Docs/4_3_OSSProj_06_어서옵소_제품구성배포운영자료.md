@@ -40,13 +40,18 @@
 3. `npm start`
 
 ### 백엔드
-
-#### 데이터 베이스 변경
+#### 1. Java 설치 (JDK)
+- 스프링 부트 애플리케이션을 실행하기 위해 JDK가 필요하다. 본 프로젝트는 JDK 17을 사용하였다.
+    
+#### 2. 데이터 베이스 변경
 - 본인의 데이터 베이스로 변경해야 사용가능하다.
 - 변경방법
   - src\backend\src\main\resources\application.properties 파일에서 아래 사진 부분의 url을 본인 데이터베이스 경로로 수정하고, 계정명과 비밀번호를 변경한다.
   ![image](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/assets/144206885/e577d725-fde8-4240-91a6-d6f7420bf831)
- 
+
+#### 3. 애플리케이션 실행
+- src\backend\src\main\java\com\backend\backend\BackendApplication.java 파일을 실행하여 스프링 부트 애플리케이션을 시작한다.
+
 ### Swagger 사용법
 - Swagger는 백엔드의 API를 테스트 해볼 수 있는 오픈 소스 소프트웨어 프레임워크로, 본 프로젝트 소스코드에 포함되어 있어 프론트에서 구현되지 않은 기능도 테스트 해볼 수 있다.
 - Swagger 기능 제거 방법

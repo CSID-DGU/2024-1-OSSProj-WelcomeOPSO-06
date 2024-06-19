@@ -4,16 +4,16 @@
 ## 1. 프로젝트 제품 구성
 
 ### 구현 기능
-  1. 회원가입/로그인/로그아웃 [주요코드](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/blob/mmm/src/backend/src/main/java/com/backend/backend/controller/UserApiController.java)
-  2. 모임 생성 [주요코드](src/backend/src/main/java/com/backend/backend/controller/MeetingController.java)
-  3. 모임 가입 [주요코드](src/backend/src/main/java/com/backend/backend/controller/ParticipantController.java)
-  4. 홍보 게시글 목록(홈화면)  [주요코드](src/backend/src/main/java/com/backend/backend/controller/BoardController.java)
-  5. 주최모임 목록 확인  [주요코드](src/backend/src/main/java/com/backend/backend/controller/MeetingController.java)
-  6. 참여모임 목록 확인  [주요코드](src/backend/src/main/java/com/backend/backend/controller/MeetingController.java)
-  7. 주최자-큐알코드 생성  [주요코드](src/backend/src/main/java/com/backend/backend/controller/QRcodeController.java)
-  8. 참여자-큐알코드 스캔으로 출석 인증  [주요코드](src/backend/src/main/java/com/backend/backend/controller/ScanController.java)
-  9. 주최자-참여자 출석 목록 조회  [주요코드](src/backend/src/main/java/com/backend/backend/controller/AttendController.java)
-  10. 참여자-해당모임의 본인 출석 조회  [주요코드](src/backend/src/main/java/com/backend/backend/controller/AttendController.java)
+  1. 회원가입/로그인/로그아웃 -> [주요코드](https://github.com/CSID-DGU/2024-1-OSSProj-WelcomeOPSO-06/blob/mmm/src/backend/src/main/java/com/backend/backend/controller/UserApiController.java)
+  2. 모임 생성 -> [주요코드](src/backend/src/main/java/com/backend/backend/controller/MeetingController.java)
+  3. 모임 가입 -> [주요코드](src/backend/src/main/java/com/backend/backend/controller/ParticipantController.java)
+  4. 홍보 게시글 목록(홈화면) ->  [주요코드](src/backend/src/main/java/com/backend/backend/controller/BoardController.java)
+  5. 주최모임 목록 확인 ->  [주요코드](src/backend/src/main/java/com/backend/backend/controller/MeetingController.java)
+  6. 참여모임 목록 확인 ->  [주요코드](src/backend/src/main/java/com/backend/backend/controller/MeetingController.java)
+  7. 주최자-큐알코드 생성 ->  [주요코드](src/backend/src/main/java/com/backend/backend/controller/QRcodeController.java)
+  8. 참여자-큐알코드 스캔으로 출석 인증 ->  [주요코드](src/backend/src/main/java/com/backend/backend/controller/ScanController.java)
+  9. 주최자-참여자 출석 목록 조회 ->  [주요코드](src/backend/src/main/java/com/backend/backend/controller/AttendController.java)
+  10. 참여자-해당모임의 본인 출석 조회 ->  [주요코드](src/backend/src/main/java/com/backend/backend/controller/AttendController.java)
      
   ※ 백엔드에서 추가 개발된 기능은 API명세서 확인 -> [바로가기 링크](https://www.notion.so/API-9e8f00b6085e476bb837cbb3f8a85c44)
 
